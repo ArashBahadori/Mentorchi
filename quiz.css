@@ -11,18 +11,25 @@
     padding: 0px;
     direction: rtl;
     font-size: 16px;
+    box-sizing: border-box;
 }
 body{
     background: #FFF5E5;
     font-family: 'MahboubehMehravar', sans-serif;
     height: 250vh;
-    overflow-x: hidden; 
+    /* overflow-x: hidden;  */
     }
 .container{
-    position: relative;
     display: flex;
     justify-content: center;
+    margin-right: 0;
+    margin-left: 0;
 }
+
+.container .main {
+    align-self: center;
+}
+
 .container .header{
     background: #D4BDAC;
     width: 1000px;
@@ -31,7 +38,7 @@ body{
     z-index: 1;
     display: flex;
     justify-content: space-between;
-    margin: 0px 315px;
+    margin: 0px auto;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     z-index: 4;
@@ -46,7 +53,7 @@ body{
     font-size: 1.2em;
     color: black;
     font-weight: bold;
-    padding: 50px;
+    padding: 0px 50px;
     margin: 1px;
 }
 .container .header .image{
@@ -149,10 +156,10 @@ body{
     width: 50px;
  }
  .footer .text{
-    position: relative;
-    right: 65%;
-    z-index: 3;
     color: #333333;
+    margin-right: 1000px;
+    position: relative;
+    bottom: 10px;
  }
  .footer .rights{
     display: flex;

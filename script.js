@@ -95,9 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
 
                 if (response.ok) {
-                    console.log("Login successful:", data);
-                    alert("Login successful!");
-                    window.location.href = 'homepage.html';
+                    window.location.href = 'dashboard2.html';
                 } else {
                     console.error("Login error:", data);
                     alert(data.message || "Invalid email or password.");
@@ -109,11 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     //sign up
-    console.log("dfgsfg");
 
     const signupButtonInSignupPage = document.querySelector('#signup_button');
-    console.log(signupButtonInSignupPage);
-    signupButtonInSignupPage.addEventListener('click', async (event) => {
+    signupButtonInSignupPage?.addEventListener('click', async (event) => {
         
         event.preventDefault();
         
@@ -140,9 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             if (response.ok) {
-                // console.log("Signup successful:", data);
-                // alert("Account created successfully!");
-                // window.location.href = 'login.html';
                 window.location.href = 'dashboard1.html';//error
             } else {
                 console.error("Signup error:", data);
@@ -153,9 +146,23 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Failed to connect to the server.");
         }
     });
-    if (true) {
+    //select only one answer 
+    function selectOnlyOne(selectedCheckbox, questionId) {
+        const checkboxes = document.querySelectorAll(`input[type="checkbox"][id^="${questionId}"]`);
+    
+        // Uncheck all checkboxes except the one clicked0
+        checkboxes.forEach((checkbox) => {
+            if (checkbox !== selectedCheckbox) {
+                checkbox.checked = false;
+            }
+        });
+    }
+    
+    window.selectOnlyOne = selectOnlyOne;
 
-}
+    document.querySelector('#acceptance-btn').addEventListener('click', () => { // should be complited
+        window.location.href = 'dashboard2.html';
+    });
 });
 
 
