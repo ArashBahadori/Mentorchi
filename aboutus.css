@@ -1,0 +1,136 @@
+@font-face {
+    font-family: 'MahboubehMehravar';
+    src: url(Mentorchii/Mahboubeh_mehravar.ttf);
+}
+@font-face {
+    font-family: 'plasma';
+    src: url(Mentorchii/Plasma-Square-Dots-@behfont.ttf);
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    direction: rtl;
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+    display: none;
+  }
+body{
+    background: #FFF5E5;
+    font-family: 'MahboubehMehravar', sans-serif;
+    height: 120vh;
+    overflow: hidden;
+}
+.container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.container .header{
+    background: #D4BDAC;
+    width: 1000px;
+    height: 80px;
+    position: fixed;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 315px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    z-index: 4;
+}
+.container .nav-bar .nav-btn{
+    background: none;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+.container .nav-bar .nav-btn .btn-login{
+    font-family: 'MahboubehMehravar', sans-serif;
+    background: #99887C;
+    border-radius: 10px;
+    padding: 1px;
+    width: 70px;
+    font-size: 1.2em;
+    border: none;
+    margin: 0px 5px;
+    cursor: pointer;
+}
+.container .nav-bar .nav-btn .btn-signup{
+    font-family: 'MahboubehMehravar', sans-serif;
+    border: 1px solid #99887C;
+    font-size: 1.2em;
+    background: none;
+    padding: .6px;
+    width: 70px;;
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+.container .nav-bar .nav-link{
+    top: 23px;
+    position: fixed;
+    right: 550px;
+}
+.container .nav-bar .nav-link a{
+    text-decoration: none;
+    font-size: 1.2em;
+    color: black;
+    font-weight: bold;
+    padding: 0px 50px;
+    margin: 1px;
+}
+.container .header .image{/*it should be link to home page*/
+    top: 18px;
+    position: fixed;
+    left: 300px;
+    width: 50px;
+}
+
+.description{
+    width: 800px;
+}
+.description h1{
+    font-family: 'plasma', sans-serif;
+    font-size: 4em;
+    position: relative;
+    right: 40%;
+    top: 120px;
+}
+.description p{
+    font-size: 18px;
+    width: 700px;
+    position: relative;
+    right: 52%;
+    top: 150px;
+}
+
+.footer{
+    position: relative;
+    top: 27%;
+}
+.footer .footer-link a{
+    position: relative;
+    right: 21%;
+    top: 74px;
+    color: #000000;
+    text-decoration: none;
+}
+ .footer .image{
+    position: relative; 
+    right: 75%;
+    width: 50px;
+ }
+ .footer .text{
+    color: #333333;
+    margin-right: 1000px;
+    position: relative;
+    bottom: 10px;;
+ }
+ .footer .rights{
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+    color: #807267;
+ }
