@@ -1,0 +1,62 @@
+@font-face {
+    font-family: 'MahboubehMehravar';
+    src: url(Mentorchii/Mahboubeh_mehravar.ttf);
+}
+@font-face {
+    font-family: 'plasma';
+    src: url(Mentorchii/Plasma-Square-Dots-@behfont.ttf);
+}
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-size: 16px;
+    direction: rtl;
+}
+body{
+    background: #FFF5E5;
+    overflow-y: hidden;
+}
+.field-container{
+    width: 630px;
+    height: 360px;
+    background: #D4BDAC;
+    border-radius: 14px;   
+    margin-top: 150px;
+}
+.field-container .field-name{ 
+    font-size: 1.8em;
+    font-family: 'plasma';
+    position: relative;
+    top: 10px;
+}
+.field-container .btn{
+    background: #5272CC;
+    width: 139px;
+    height: 38px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-family: 'MahboubehMehravar', sans-serif;
+    font-size: 1.2em;
+    margin-top: 290px;
+    margin-right: 40px;
+}
+.field-container .field-exp{
+    font-family: 'MahboubehMehravar', sans-serif;
+        margin: 30px;
+}
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-container .image-container .image{
+    width: 396px;
+    height: 466px;
+    position: relative;
+    top: 300px;
+    left: 200px;
+    
+}

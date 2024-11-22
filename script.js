@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     
         // Initialize with default section
-        onSectionChanged();
     
         return { setSection};
     })();
@@ -159,10 +158,70 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     window.selectOnlyOne = selectOnlyOne;
-
-    document.querySelector('#acceptance-btn').addEventListener('click', () => { // should be complited
+    document.querySelector('#acceptance-button')?.addEventListener('click', () => { // should be complited
         window.location.href = 'dashboard2.html';
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    document.querySelector('.confirm-btn #acceptance-btn').addEventListener('click', () => {
+        // Collect all input elements
+        const inputs = document.querySelectorAll('.quiz-form input[type="checkbox"]:checked');
+        const answers = [];
+    
+        // Loop through the selected inputs and store their values
+        inputs.forEach(input => {
+            answers.push(Number(input.value)); // Convert value to a number
+        });
+    
+        // Validate: Ensure 10 answers are selected
+        if (answers.length !== 10) {
+            alert("Please answer all questions!");
+            return;
+        }
+    
+        // Send collected answers to the backend
+        fetch("http://localhost:5505/api/users/analyze-answers", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ answers }), // Convert the answers array to JSON
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to analyze answers.');
+            }
+            return response.json();
+        })
+        .then(result => {
+            // Show the result
+            alert(`Your suitable field is: ${result.field}\nSummary: ${result.summary}`);
+        })
+        .catch(error => {
+            console.error("Error analyzing quiz:", error);
+            alert("There was an error processing your answers. Please try again.");
+        });
+        window.location.href = 'field.html';
+    });
+
 });
 
 

@@ -150,7 +150,6 @@ body{
 .question{
     position: relative;
     margin-top: -900px;
-    /* bottom: 900px; */
     z-index: 2;
 }
 .question h1{
