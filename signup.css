@@ -1,6 +1,6 @@
 @font-face {
     font-family: mahbu;
-    src: url(/Mentorchii/Mahboubeh_mehravar.ttf);
+    src: url(/Mentorchi/Mentorchii/Mahboubeh_mehravar.ttf);
 }
 *{
     margin: 0px;
@@ -49,7 +49,7 @@ h2 {
 
 .input {
     margin-right: 60px;
-    margin-top: 40px;
+    margin-top: 20px;
     z-index: 1;
 }
 
@@ -60,7 +60,7 @@ h2 {
     opacity: 90%;
     background: none;
     border-radius: 20px;
-    margin-bottom: 20px;
+    margin-top: 20px;
     outline: none;
     padding: 0px 10px;
 }
@@ -103,3 +103,10 @@ h2 {
     left: 280px;
     bottom: 250px;
 }
+
+.error-message {
+    color: #df0101;
+    font-family: 'MahboubehMehravar', sans-serif;
+    font-size: 0.8em;
+    display: none;
+  }

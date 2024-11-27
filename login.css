@@ -179,3 +179,9 @@ body{
     position: relative;
     bottom: 40px;   
 }
+.error-message {
+    color: #df0101;
+    font-family: 'MahboubehMehravar', sans-serif;
+    font-size: 0.8em;
+    display: none;
+  }

@@ -11,18 +11,93 @@
         <h2>ثبت نام</h2>
         <form class="input">
             <input type="text" placeholder="نام" class="input-field" required id="name_signup">
+            <div id="name-error" class="error-message">نام را وارد کنید</div>
             <input type="email" placeholder="ایمیل" class="input-field" required id="email_signup">
+            <div id="email-error" class="error-message">ایمیل را وارد کنید</div>
             <input type="password" placeholder="رمزعبور" class="input-field" required id="password_signup">
+            <div id="password-error" class="error-message">رمزعبور را وارد کنید</div>
             <input type="password" placeholder="تکرار رمزعبور" class="input-field" required>
+            <div id="password-error" class="error-message">رمزعبور را وارد کنید</div>
             <button type="submit" class="confirm-button" id="signup_button">تایید</button>
         </form>
         <div class="container">
             <p class="text">اکانت دارید؟<a href="login.html">ورود</a></p>
         </div>
         <div class="image-container">
-            <img src="/Mentorchii/signup vector03.png" alt="Signup vector">
+            <img src="/Mentorchi/Mentorchii/signup vector03.png" alt="Signup vector">
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js">
+        document.querySelector('.input').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Clear all previous errors
+    clearErrors();
+
+    let hasError = false;
+
+    // Get input fields
+    const name = document.getElementById('name_signup');
+    const email = document.getElementById('email_signup');
+    const password = document.getElementById('password_signup');
+    const confirmPassword = document.querySelector('input[placeholder="تکرار رمزعبور"]');
+
+    // Validate Name
+    if (name.value.trim() === '') {
+        showError(name, 'name-error');
+        hasError = true;
+    }
+
+    // Validate Email
+    if (email.value.trim() === '') {
+        showError(email, 'email-error');
+        hasError = true;
+    }
+
+    // Validate Password
+    if (password.value.trim() === '') {
+        showError(password, 'password-error');
+        hasError = true;
+    }
+
+    // Validate Confirm Password
+    if (confirmPassword.value.trim() === '') {
+        showError(confirmPassword, 'password-error');
+        hasError = true;
+    } else if (password.value !== confirmPassword.value) {
+        // Check if passwords match
+        showError(confirmPassword, 'password-error');
+        document.getElementById('password-error').textContent = 'رمزعبورها یکسان نیستند';
+        hasError = true;
+    }
+
+    // If no errors, handle successful submission
+    if (!hasError) {
+        alert('Form submitted successfully!');
+        this.reset(); // Reset the form for demo purposes
+    }
+});
+
+// Function to show error message
+function showError(input, errorId) {
+    const errorMessage = document.getElementById(errorId);
+    errorMessage.style.display = 'block'; // Show error message
+    input.classList.add('error-field'); // Add red border to input
+}
+
+// Function to clear all error messages
+function clearErrors() {
+    // Hide error messages
+    document.querySelectorAll('.error-message').forEach((message) => {
+        message.style.display = 'none';
+    });
+
+    // Remove error styles from input fields
+    document.querySelectorAll('.error-field').forEach((field) => {
+        field.classList.remove('error-field');
+    });
+}
+
+    </script>
 </body>
 </html>
