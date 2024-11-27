@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>داشبورد</title>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="dashboard2.css">
 </head>
+
 <body>
     <div id="dashbord-container">
         <div class="container" id="header-container">
-            <header class="header">                
+            <header class="header">
                 <div class="nav-bar">
                     <div class="nav-link">
                         <a href="">توضیحات</a>
-                        <a href="">سوالات متداول</a>                        
+                        <a href="">سوالات متداول</a>
                         <a href="">درباره ما</a>
                     </div>
                     <a href="homepage.html"><img src="mentorChi-logo.png" alt="" class="image"></a>
                 </div>
             </header>
         </div>
-        
+
         <div class="nav" id="navbar">
-            <form action="" class="buttons">                
-                <button class="btn1" type="button" onclick="setSection('profile')"><i class='bx bxs-user-circle'></i></button>
+            <form action="" class="buttons">
+                <button class="btn1" type="button" onclick="setSection('profile')"><i
+                        class='bx bxs-user-circle'></i></button>
                 <button class="btn1" type="button" onclick="setSection('roadmap')">نقشه راه</button>
                 <button class="btn1" type="button" onclick="setSection('mentor')">منتور</button>
-                <button class="btn1" type="button" onclick="setSection('progress')">نمودار پیشرفت</button>           
+                <button class="btn1" type="button" onclick="setSection('progress')">نمودار پیشرفت</button>
             </form>
-         </div>
+        </div>
         <main class="main">
-              <div class="container2" id="content-container">                
+            <div class="container2" id="content-container">
                 <div class="profile-page hide" id="profile">
-                    <div class="email"><! -- i should add email address of my user using js--!> 
-                        <p>ایمیل:</p>
+                    <div class="email">
+                        <! -- i should add email address of my user using js--!>
+                            <p>ایمیل:</p>
                     </div>
                     <div class="change-password">
                         <p>تعویض رمز عبور:</p>
                         <form action="" class="inputs">
-                            <input type="text" class="input" placeholder="رمز عبور قبلی">                            
+                            <input type="text" class="input" placeholder="رمز عبور قبلی">
                             <input type="text" class="input" placeholder="رمز عبور جدید">
                             <input type="text" class="input" placeholder="تکرار رمز عبورجدید">
                             <button class="btn">تایید</button>
@@ -45,28 +49,350 @@
                     </div>
                     <div class="exit-account">
                         <p>خروج از حساب کاربری:</p>
-                       <button class="exit-btn" id="exit_from_account">خروج</button>
+                        <button class="exit-btn" id="exit_from_account">خروج</button>
                     </div>
                 </div>
-                <div class="roadmap-page show" id="roadmap">                    
-                    <h1>roadmap page</h1>
+
+                <div class="roadmap-page show" id="roadmap">
+                    <div class="frontend" id="content1">
+                        <h1>مفاهیم پایه</h1>
+                        <div>
+                            <h2>html</h2>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>structure</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>forms</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>semantic elemets</span>
+                            </label>
+                        </div>
+                        <div>
+                            <h2>css</h2>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>colors</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>fonts</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>layout</span>
+                            </label>
+                        </div>
+                        <div>
+                            <h2>javascript basics</h2>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>variables</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>functions</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>DOM manipulation</span>
+                            </label>
+                        </div>
+                        <h1>core skill</h1>
+                        <div>
+                            <h2>advanced html & css</h2>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>responsive design</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>multimedia</span>
+                            </label>
+                        </div>
+                        <div>
+                            <h2> javascript & DOM manipulation</h2>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>events</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>DOM traversal</span>
+                            </label>
+                        </div>
+                        <h1>version control</h1>
+                        <div>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span> Git & GitHub</span>
+                            </label>
+                        </div>
+                        <h1>advanced javascript</h1>
+                        <div>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span> ES6+ : modern features</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>APIs : fetch and display data</span>
+                            </label>
+                        </div>
+                        <h1>css frameworks</h1>
+                        <div>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>bootstrap or tailwind</span>
+                            </label>
+                        </div>
+                        <h1>front-end frameworks</h1>
+                        <div>
+                            <h2>react</h2>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>components</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>props</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>state</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>hooks</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="backend" id="content2">
+                        <h1>مبانی برنامه نویسی</h1>
+                        <div>
+                            <h2>یک زبان برنامه نویسی را انتخاب کنید</h2>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>variables</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>data structures</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>conditionals</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>loops</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>functions</span>
+                            </label>
+                        </div>
+                        <h1>وب سرورها و مبانی شبکه</h1>
+                        <div>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>HTTP Protocol</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>Web Servers</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>REST APIs</span>
+                            </label>
+                        </div>
+                        <h1>پایگاه های داده</h1>
+                        <div>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>SQL Databases</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>NoSQL Databases</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>ORM</span>
+                            </label>
+                        </div>
+                        <h1>فریم ورک های سمت سرور</h1>
+                        <div>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>Framework Basics</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>Routing</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>Middleware</span>
+                            </label>
+                        </div>
+                        <h1>Authentication and Authorization</h1>
+                        <div>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>Authentication Basics</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>JWT</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>OAuth2 and Third-Party Authentication</span>
+                            </label>
+                        </div>
+                        <h1>APIs and Data Interchange</h1>
+                        <div>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>RESTful API Design</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>Data Formats</span>
+                            </label>
+                        </div>
+                        <h1>امنیت</h1>
+                        <div>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>اعتبار سنجی داده ها</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>رمزگذاری</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>مبانی امنیت</span>
+                            </label>
+                        </div>
+                        <h1>version control</h1>
+                        <div>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>Git & GitHub</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="uiux" id="content3">
+                        <h1>مبانی UI/UX</h1>
+                        <div>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>UI در مقابل UX را درک کنید</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>اصول طراحی</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>طراحی کاربر محور</span>
+                            </label>
+                        </div>
+                        <h1>تحقیق و درک کاربر</h1>
+                        <div>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>تحقیق کاربر</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>Personas</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>تجزیه و تحلیل رقبا</span>
+                            </label>
+                        </div>
+                        <h1>معماری اطلاعات</h1>
+                        <div>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>Sitemaps</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>User Flows</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>Wireframes</span>
+                            </label>
+                        </div>
+                        <h1>مبانی طراحی UI</h1>
+                        <div>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>تئوری رنگ</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>تایپوگرافی</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>Layouts and Grids</span>
+                            </label>
+                        </div>
+                        <h1>دسترسی و فراگیری</h1>
+                        <div>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>اصول دسترسی</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>دسترسی به رنگ</span>
+                            </label>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>طراحی فراگیر</span>
+                            </label>
+                        </div>
+                        <h1>ابزارهای طراحی UI/UX</h1>
+                        <div>
+                            <label class="topic">
+                                <input type="checkbox">
+                                <span>Figma</span>
+                            </label>
+                        </div>
+
+                    </div>
                 </div>
+
                 <div class="mentor-page hide" id="mentor">
                     <h1>mentor page</h1>
-                </div>                
+                </div>
                 <div class="progress-page hide" id="progress">
                     <h1>progress page</h1>
                 </div>
-            </div>                    
+            </div>
         </main>
-    </div>  
+    </div>
     <div class="exit-account-container hiden" id="exit_container">
         <p> میخواهید از حساب کاربری خود خارج شوید؟</p>
-        <form action="" class="buttons">                
+        <form action="" class="buttons">
             <button type="button" class="back-btn" id="back">انصراف</button>
             <button type="button" class="exit-btn" id="exit">خروج</button>
         </form>
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>

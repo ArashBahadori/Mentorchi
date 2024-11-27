@@ -89,12 +89,13 @@ body{
     cursor: pointer;
 }
 .main .container2{
-    width: 630px;
+    width: 720px;
     height: 450px;
-    border: 3px solid #D4BDAC;
+    border: 3px solid #68993D;
     border-radius: 12px;
     margin-top: 180px;
     transform: translateY(-10px);
+    overflow: auto;
 }
 .container2 .profile-page{
     margin-right: 15px;
@@ -212,4 +213,59 @@ body{
     outline: none;
     border-radius: 8px;
     margin: 20px;
+}
+
+.main .container2 .roadmap-page h1{
+    font-size: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+.main .container2 .roadmap-page h2{
+    font-size: 18px;
+    margin-right: 40px;
+}
+
+.main .container2 .roadmap-page div{
+    display: flex;
+    flex-direction: column;
+
+}
+.main .container2 .roadmap-page label{
+    margin-right: 60px;
+}
+.topic input[type="checkbox"]:checked + span{
+    color: #707070;
+}
+
+.topic input{
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    accent-color: #68993D;
+}
+
+.main .container2::-webkit-scrollbar {
+    width: 12px;
+}
+
+.main .container2::-webkit-scrollbar-track {
+    background: #FFF5E5;
+    border-radius: 10px;
+}
+
+.main .container2::-webkit-scrollbar-thumb {
+    background-color: #D4BDAC;
+    border-radius: 10px;
+    border: 3px solid #FFF5E5;
+}
+
+.main .container2 .roadmap-page .frontend{
+    display: none;
+}
+.main .container2 .roadmap-page .backend{
+    display: none;
+}
+.main .container2 .roadmap-page .uiux{
+    display: none;
 }

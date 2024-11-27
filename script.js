@@ -222,6 +222,9 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'field.html';
     });
 
+    // const result = localStorage.getItem('quizResult');
+    // document.getElementById(`content${result}`).style.display = 'block';
+
 });
 
 
