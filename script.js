@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function selectOnlyOne(selectedCheckbox, questionId) {
         const checkboxes = document.querySelectorAll(`input[type="checkbox"][id^="${questionId}"]`);
 
-        // Uncheck all checkboxes except the one clicked0
+        // Uncheck all checkboxes except the one clicked
         checkboxes.forEach((checkbox) => {
             if (checkbox !== selectedCheckbox) {
                 checkbox.checked = false;
@@ -235,6 +235,10 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'dashboard2.html';
     });
 
+
+    //road map selection
+    const result = localStorage.getItem(''); //name of the variable that you got the answer from backend
+   document.getElementById(`content${result}`)?.style.display = 'block';
 
 
 
@@ -294,11 +298,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         window.location.href = 'field.html';
     });
-
-    // const result = localStorage.getItem('quizResult');
-    // document.getElementById(`content${result}`).style.display = 'block';
-
-
 
 });
 

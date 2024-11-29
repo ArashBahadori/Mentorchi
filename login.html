@@ -27,61 +27,7 @@
             <img src="Mentorchii/login vector02.png" alt="">
         </div>
     </div>
-    <script src="script.js">
-
-        document.getElementById('login-form').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent form submission
-
-            // Clear previous errors
-            clearErrors();
-
-            let hasError = false;
-
-            // Get the input fields
-            const email = document.getElementById('email_login');
-            const password = document.getElementById('password_login');
-
-            // Validate Email field
-            if (email.value.trim() === '') {
-                showError(email, 'email-error');
-                hasError = true;
-            }
-
-            // Validate Password field
-            if (password.value.trim() === '') {
-                showError(password, 'password-error');
-                hasError = true;
-            }
-
-            // If no errors, you can submit the form (or do whatever you want)
-            if (!hasError) {
-                alert('Form submitted successfully!');
-                // For now, we'll reset the form for demo purposes.
-                document.getElementById('login-form').reset();
-            }
-        });
-
-        // Function to show error message
-        function showError(input, errorId) {
-            const errorMessage = document.getElementById(errorId);
-            errorMessage.style.display = 'block'; // Show error message
-            input.classList.add('error-field'); // Add red border to input
-        }
-
-        // Function to clear all error messages
-        function clearErrors() {
-            // Hide error messages
-            document.querySelectorAll('.error-message').forEach((message) => {
-                message.style.display = 'none';
-            });
-
-            // Remove error styles from fields
-            document.querySelectorAll('.error-field').forEach((field) => {
-                field.classList.remove('error-field');
-            });
-        }
-
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
