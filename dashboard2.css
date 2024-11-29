@@ -67,7 +67,7 @@ body{
     position: relative;
     top: 130px;
     border-radius: 15px;
-    right: 390px;
+    right: 400px;
     display: flex;
     align-items: center;
 }
@@ -89,7 +89,7 @@ body{
     cursor: pointer;
 }
 .main .container2{
-    width: 630px;
+    width: 700px;
     height: 450px;
     border: 3px solid #D4BDAC;
     border-radius: 12px;

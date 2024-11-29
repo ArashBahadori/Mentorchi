@@ -7,21 +7,28 @@
 <body>
     <div class="main-container">
         <div class="field-container">
-            <div class="front">
-                <!--the informations that fetche from back-->                 
-            </div>
-            <div class="back">
-                <!--the informations that fetche from back-->                                  
-            </div>
-            <div class="ui ">
-                <!--the informations that fetche from back-->                                   
-            </div>
             <button class="btn" id="acceptance-button">تایید</button>
+            <div id="suitable-field-text" class="suitable-field"></div>  <!-- A container for the suitable field text -->
         </div>
         <div class="image-container">
             <img src="Mentorchii/quiz answer vector.png" class="image" alt=""> 
         </div>
-        <script src="script.js"></script>
     </div>
+    <script>
+         document.addEventListener('DOMContentLoaded', () => {
+            // Retrieve the suitable field from localStorage
+            const suitableField = localStorage.getItem('suitableField');
+
+            if (suitableField) {
+                // Display it in the field-container
+                const fieldContainer = document.querySelector('#suitable-field-text');
+                fieldContainer.textContent = suitableField;  // Insert the value inside the div
+            } else {
+                console.error("No suitable field found in localStorage.");
+            }
+        });
+    </script>
+    
+    <script src="script.js"></script>
 </body>
 </html>

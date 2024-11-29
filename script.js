@@ -162,26 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'dashboard2.html';
     });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    document.querySelector('.confirm-btn #acceptance-btn').addEventListener('click', () => {
+    document.querySelector('.confirm-btn #acceptance-btn')?.addEventListener('click', () => {
         // Collect all input elements
         const inputs = document.querySelectorAll('.quiz-form input[type="checkbox"]:checked');
         const answers = [];
@@ -212,16 +193,78 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(result => {
-            // Show the result
-            alert(`Your suitable field is: ${result.field}\nSummary: ${result.summary}`);
+            // Save the result in localStorage
+            localStorage.setItem('suitableField', result.data.result); // Ensure the value exists
+            console.log("Test value saved to localStorage: testValue");
+
+            window.location.href = 'field.html';
+            // Redirect to field.html
         })
         .catch(error => {
             console.error("Error analyzing quiz:", error);
             alert("There was an error processing your answers. Please try again.");
         });
-        window.location.href = 'field.html';
     });
+    //forgetpassword
+    document.querySelector('#forgot-btn')?.addEventListener('click', () => {
+        const emailField = document.querySelector('#email');
+    
+        if (!emailField || !emailField.value) {
+            console.error('Email field is empty or not found');
+            alert('Please enter your email address.'); // User-friendly alert
+            return;
+        }
+    
+        const email = emailField.value;
+    
+        fetch("http://localhost:5505/api/users/forgot-password", {            
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json", // Corrected header
+            },
+            body: JSON.stringify({ email }), // Pass email as an object
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();    
+        })
+        .then(data => {
+            localStorage.setItem('resetToken', data.resetToken);
+            window.location.href = "reset-password.html";
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('An error occurred. Please try again.'); // User-friendly alert
+        });
+    });
+    
 
+    document.querySelector("#reset-password-btn")?.addEventListener('click', () => {
+        const token = document.querySelector("#token-box").value;
+        const password = document.querySelector("#new-password").value;
+
+        fetch("http://localhost:5505/api/users/reset-password", {
+            method: "post",
+            headers: {
+                "content-type" : "application/json",
+            },
+            body: JSON.stringify({token, password}),
+        })
+        .then(response => {
+            if(!response.ok) console.log('Network response was not ok');
+            return response.json();
+        })
+        .then(result => {
+            console.log('seccess ' + result);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('An error occurred. Please try again.'); // User-friendly alert
+        });
+    });
+    
 });
 
 

@@ -22,7 +22,7 @@ body{
     height: 360px;
     background: #D4BDAC;
     border-radius: 14px;   
-    margin-top: 150px;
+    margin-top: 70px;
 }
 .field-container .field-name{ 
     font-size: 1.8em;
@@ -58,5 +58,11 @@ body{
     position: relative;
     top: 300px;
     left: 200px;
-    
+}
+.main-container .suitable-field{
+    font-family: 'MahboubehMehravar', sans-serif;
+    position: relative;
+    bottom: 300px;
+    margin: 20px 40px;
+    font-size: 1.1em;
 }
