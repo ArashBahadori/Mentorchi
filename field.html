@@ -8,7 +8,10 @@
     <div class="main-container">
         <div class="field-container">
             <button class="btn" id="acceptance-button">تایید</button>
-            <div id="suitable-field-text" class="suitable-field"></div>  <!-- A container for the suitable field text -->
+            <div id="suitable-field-text" class="suitable-field">
+                <h1 id="header"></h1>
+                <p id="result"></p>
+            </div>  <!-- A container for the suitable field text -->
         </div>
         <div class="image-container">
             <img src="Mentorchii/quiz answer vector.png" class="image" alt=""> 
@@ -17,15 +20,19 @@
     <script>
          document.addEventListener('DOMContentLoaded', () => {
             // Retrieve the suitable field from localStorage
-            const suitableField = localStorage.getItem('suitableField');
-
-            if (suitableField) {
-                // Display it in the field-container
-                const fieldContainer = document.querySelector('#suitable-field-text');
-                fieldContainer.textContent = suitableField;  // Insert the value inside the div
+          // Retrieve the values from localStorage
+            const headerValue = localStorage.getItem('headerValue');
+            const resultValue = localStorage.getItem('resultValue');
+            console.log(headerValue);
+            
+            
+            if (headerValue && resultValue) {
+             document.querySelector('#suitable-field-text #header').textContent = headerValue;
+             document.querySelector('#suitable-field-text #result').textContent = resultValue;
             } else {
-                console.error("No suitable field found in localStorage.");
+             console.error("No data found in localStorage.");
             }
+
         });
     </script>
     

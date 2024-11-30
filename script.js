@@ -193,13 +193,22 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(result => {
-            // Save the result in localStorage
-            localStorage.setItem('suitableField', result.data.result); // Ensure the value exists
-            console.log("Test value saved to localStorage: testValue");
+            // Check if result.data.result and result.data.header exist
+            if (result.data?.result && result.data?.header && result.data?.resultKey) {
+                const headerValue = result.data.header;
+                const resultValue = result.data.result;
+                const resultKey = result.data.resultKey;
 
-            window.location.href = 'field.html';
-            // Redirect to field.html
-        })
+                
+                // Save both values in localStorage separately
+                localStorage.setItem('headerValue', headerValue);
+                localStorage.setItem('resultValue', resultValue);
+                localStorage.setItem('resultKey', resultKey);
+        
+                // Redirect to field.html
+                window.location.href = 'field.html'
+            }
+        })        
         .catch(error => {
             console.error("Error analyzing quiz:", error);
             alert("There was an error processing your answers. Please try again.");
