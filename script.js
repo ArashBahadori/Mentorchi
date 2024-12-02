@@ -87,11 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
             let hasErrors = false;
 
             if (!email) {
-                showError(document.querySelector('#email_login'), 'email-error', 'ایمیل را وارد کنید');
+                showError('email-error', 'ایمیل را وارد کنید');
                 hasError = true;
             }
             if (!password) {
-                showError(document.querySelector('#password_login'), 'password-error', 'رمزعبور را وارد کنید');
+                showError('password-error', 'رمزعبور را وارد کنید');
                 hasError = true;
             }
             if (hasErrors) {
@@ -114,14 +114,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.location.href = 'dashboard2.html';
                 } else {
                     console.error("Login error:", data);
-                    alert(data.message || "Invalid email or password.");
+                    showError('error', 'ایمیل یا رمزعبور نامعتبر')
                 }
             } catch (error) {
                 console.error('Error:', error.message);
                 alert("Failed to connect to the server.");
             }
 
-            function showError(inputElement, errorId, message) {
+            function showError(errorId, message) {
                 const errorMessageElement = document.getElementById(errorId);
                 errorMessageElement.textContent = message;
                 errorMessageElement.style.display = 'block';
@@ -130,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //sign up
-
     const signupButtonInSignupPage = document.querySelector('#signup_button');
     signupButtonInSignupPage?.addEventListener('click', async (event) => {
 
@@ -139,28 +138,36 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.querySelector('#email_signup').value.trim();
         const name = document.querySelector('#name_signup').value.trim();
         const password = document.querySelector('#password_signup').value.trim();
+        const repeatPassword = document.querySelector('#repeat_password_signup').value.trim();
 
         clearErrors();
 
-        let hasErrors = false;
+        let hasError = false;
 
         if (!name) {
-            showError(document.querySelector('#name_signup'), 'name-error', 'نام را وارد کنید');
+            showError('name-error', 'نام را وارد کنید');
             hasError = true;
         }
         if (!email) {
-            showError(document.querySelector('#email_signup'), 'email-error', 'ایمیل را وارد کنید');
+            showError('email-error', 'ایمیل را وارد کنید');
             hasError = true;
         }
         if (!password) {
-            showError(document.querySelector('#password_signup'), 'password-error', 'رمزعبور را وارد کنید');
+            showError('password-error', 'رمزعبور را وارد کنید');
             hasError = true;
         }
-
-        if (hasErrors) {
+        if(!repeatPassword){
+            showError('repeat-password-error', 'رمزعبور را تکرار کنید');
+            hasError = true;
+        }
+        if(password && repeatPassword && password !== repeatPassword){
+            showError('wrong-password', '.تکرار رمز عبور اشتباه است');
+            hasError = true;
+        }
+        if (hasError) {
             return;
         }
-
+    
         const url = "http://localhost:5505/api/users/register";
 
         try {
@@ -184,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Failed to connect to the server.");
         }
 
-        function showError(inputElement, errorId, message) {
+        function showError(errorId, message) {
             const errorMessageElement = document.getElementById(errorId);
             errorMessageElement.textContent = message;
             errorMessageElement.style.display = 'block';
@@ -236,9 +243,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    //road map selection
-    const result = localStorage.getItem(''); //name of the variable that you got the answer from backend
-   document.getElementById(`content${result}`)?.style.display = 'block';
 
 
 
@@ -257,8 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-    document.querySelector('.confirm-btn #acceptance-btn').addEventListener('click', () => {
+    document.querySelector('.confirm-btn #acceptance-btn')?.addEventListener('click', () => {
         // Collect all input elements
         const inputs = document.querySelectorAll('.quiz-form input[type="checkbox"]:checked');
         const answers = [];
@@ -270,10 +273,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Validate: Ensure 10 answers are selected
         if (answers.length !== 10) {
-            alert("Please answer all questions!");
+            showError('quiz-error', 'همه ی سوالات را پاسخ دهید')
             return;
         }
 
+        function showError(errorId, message) {
+            const errorMessageElement = document.getElementById(errorId);
+            errorMessageElement.textContent = message;
+            errorMessageElement.style.display = 'block';
+        }
         // Send collected answers to the backend
         fetch("http://localhost:5505/api/users/analyze-answers", {
             method: "POST",

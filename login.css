@@ -185,3 +185,11 @@ body{
     font-size: 0.8em;
     display: none;
   }
+
+.error-message-center{
+    margin-right: 128px;
+    color: #df0101;
+    font-family: 'MahboubehMehravar', sans-serif;
+    font-size: 0.8em;
+    display: none;
+}

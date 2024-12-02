@@ -166,3 +166,12 @@ body{
     align-items: center;
     color: #807267;
  }
+ .error-message {
+    color: #df0101;
+    font-family: 'MahboubehMehravar', sans-serif;
+    font-size: 1 em;
+    position: relative;
+    display: none;
+    top: 250px;
+    right: 100px;
+  }
