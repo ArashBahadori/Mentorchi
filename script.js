@@ -115,9 +115,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.querySelector('#email_signup').value;
         const name = document.querySelector('#name_signup').value;
         const password = document.querySelector('#password_signup').value;
+        const errorContainer = document.querySelector('#error');
 
         if (!email || !name || !password) {
-            alert("All fields are required!");
+            errorContainer.textContent = 'تمامی فیلد ها الزامی است';
+            errorContainer.style.background = 'red';
+            errorContainer.style.display = 'block';
+            setTimeout(() => {
+                errorContainer.style.display = 'none';
+            }, 3000);
+            
             return;
         }
 
@@ -248,12 +255,10 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('An error occurred. Please try again.'); // User-friendly alert
         });
     });
-    
-
     document.querySelector("#reset-password-btn")?.addEventListener('click', () => {
         const token = document.querySelector("#token-box").value;
         const password = document.querySelector("#new-password").value;
-
+        
         fetch("http://localhost:5505/api/users/reset-password", {
             method: "post",
             headers: {
@@ -273,6 +278,17 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('An error occurred. Please try again.'); // User-friendly alert
         });
     });
+    //save cheched checkbox
+    const checkboxes = document.querySelectorAll(".roadmap-page input[type='checkbox']");
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = localStorage.getItem(checkbox.id) === "true";  
+            // Save state on change
+            checkbox.addEventListener("change", () => {
+                localStorage.setItem(checkbox.id, checkbox.checked);
+            });
+        });
+
+    
     
 });
 
