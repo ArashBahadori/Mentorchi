@@ -91,11 +91,11 @@ body{
 .main .container2{
     width: 720px;
     height: 450px;
-    border: 3px solid #68993D;
+    border: 3px solid #D4BDAC;
     border-radius: 12px;
     margin-top: 180px;
     transform: translateY(-10px);
-    overflow: auto;
+    
 }
 .container2 .profile-page{
     margin-right: 15px;
@@ -214,7 +214,9 @@ body{
     border-radius: 8px;
     margin: 20px;
 }
-
+.main .container2 .roadmap-page{
+    overflow: auto;
+}
 .main .container2 .roadmap-page h1{
     font-size: 20px;
     margin-right: 20px;
@@ -245,16 +247,16 @@ body{
     accent-color: #68993D;
 }
 
-.main .container2::-webkit-scrollbar {
+.main ::-webkit-scrollbar {
     width: 12px;
 }
 
-.main .container2::-webkit-scrollbar-track {
+.main ::-webkit-scrollbar-track {
     background: #FFF5E5;
     border-radius: 10px;
 }
 
-.main .container2::-webkit-scrollbar-thumb {
+.main ::-webkit-scrollbar-thumb {
     background-color: #D4BDAC;
     border-radius: 10px;
     border: 3px solid #FFF5E5;
@@ -269,4 +271,63 @@ body{
 }
 .main .container2 .roadmap-page .uiux{
     display: none;
+}
+
+
+/* MENTORCHI CHATBOT */
+.chat-container{
+    width: 720px;
+    height: 400px;
+    overflow: auto;
+}
+
+.chat-input{
+    position: relative;
+    top: 400px;
+    height: 40px;
+    width: 720px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding-top: 10px;
+    background-color: #FFF5E5;
+}
+.input{
+    width: 550px;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+    margin-right: 80px;
+    background-color: #D4BDAC;
+}
+.btn{
+    position: relative;
+    left: 620px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background: none;
+}
+.chat-container .send-icon{
+    width: 20px;
+    height: 20px;
+}
+.message{
+    padding: 10px;  
+    color: black;
+    background: #D4BDAC;
+    position: relative;
+    top: 10px;
+    border-radius: 15px;
+    border-bottom-right-radius: 5px;
+    margin: 10px;
+    max-width:  fit-content;
+    display: block;
+    word-break: break-all;
 }

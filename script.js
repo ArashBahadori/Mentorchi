@@ -309,5 +309,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-
-
+//MENTORCHI CHATBOT
+document.querySelector('#send-btn').addEventListener('click', (event) => {
+  
+    event.preventDefault();
+  
+    const chatHistory = document.querySelector('#text').value;
+    const CHcontainer = document.querySelector('#chat-history-container');
+  
+    if(chatHistory.trim() != ""){
+      const messageDiv = document.createElement('div');
+      messageDiv.textContent = chatHistory;
+      messageDiv.className = 'message';
+      CHcontainer.appendChild(messageDiv);
+    }
+    document.querySelector('#text').value = "";
+  });
