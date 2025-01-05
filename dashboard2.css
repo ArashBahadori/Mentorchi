@@ -119,17 +119,13 @@ body{
 }
 .container2 .profile-page .change-password .inputs{
     margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    margin-right: -70px;
 }
 .container2 .profile-page .change-password .inputs .input{
     width: 180px;
     background: none;
     border: 3px solid #5272CC;
-    border-radius: 15px;
     outline: none;
-    padding: 0px 10px;
 }
 .container2 .profile-page .change-password .inputs .btn{
     background: #5272CC;
@@ -139,7 +135,7 @@ body{
     outline: none;
     border: none;
     cursor: pointer;
-    margin-right: 40px;
+    margin-right: 120px;
     margin-bottom: 20px;
 }
 .container2 .profile-page .exit-account{
@@ -178,9 +174,8 @@ body{
     position: relative;
     bottom: 320px;
     display: none;
-    position: relative;
-    bottom: 370px;
-    right: 620px;
+    margin: auto;
+    margin-top: -100px;
 }
 .exit-account-container p{
     margin-right: 30px;
@@ -240,7 +235,20 @@ body{
     color: #707070;
 }
 
-.topic input{
+.topic2 input{
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    accent-color: #68993D;
+
+}
+.topic1 input{
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    accent-color: #68993D;
+}
+.topic3 input{
     width: 15px;
     height: 15px;
     cursor: pointer;
@@ -302,7 +310,12 @@ body{
     
 
 }
-.btn{
+.default-text{
+    margin-right: 150px;
+    margin-top: 40px;
+    font-size: 1.5em;
+}
+.send-button{
     position: relative;
     left: 620px;
     border: none;
@@ -345,4 +358,7 @@ body{
     max-width: fit-content; 
     display: block; 
     word-wrap: break-word; 
+}
+.typing-indicator{
+    padding: 10px;
 }
