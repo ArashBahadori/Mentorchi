@@ -5,7 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "signup.html";
     });
   }
+<<<<<<< HEAD
   //IIFE (Immediately Invoked Function Expression)
+=======
+>>>>>>> temp
   const loginButton = document.querySelector(".btn-login");
   if (loginButton) {
     loginButton.addEventListener("click", () => {
@@ -15,14 +18,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".nav .buttons .btn"); //disable all buttns except quiz button
   const quizButton = document.getElementById("quiz_button");
   buttons.forEach((button) => {
+<<<<<<< HEAD
     if (button != quizButton) button.disabled = true;
+=======
+    if (button != quizButton){
+      button.disabled = true;
+    } 
+>>>>>>> temp
   });
   if (quizButton) {
     quizButton.addEventListener("click", () => {
       window.location.href = "quiz.html"; // Navigate to the quiz page
     });
   }
+<<<<<<< HEAD
 
+=======
+  
+  //IIFE (Immediately Invoked Function Expression)
+>>>>>>> temp
   let { setSection } = (() => {
     // switch dashbords pages
     let selectedSection = "roadmap";
@@ -41,6 +55,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const selectedElement = document.querySelector(`#${selectedSection}`);
       selectedElement?.classList.add("show");
       selectedElement?.classList.remove("hide");
+<<<<<<< HEAD
+=======
+      // selectedElement?.style.text.decoration: 'underline'; //???
+>>>>>>> temp
     }
 
     // Initialize with default section
@@ -56,14 +74,21 @@ document.addEventListener("DOMContentLoaded", () => {
     ?.addEventListener("click", () => {
       const container = document.querySelector("#dashbord-container");
       const exitContainer = document.querySelector("#exit_container");
+<<<<<<< HEAD
       const profileContainer = document.querySelector("#profile");
+=======
+      // const profileContainer = document.querySelector("#profile");
+>>>>>>> temp
 
       exitContainer.style.display = "block";
       container.style.filter = "blur(4px)";
 
       const button1 = document.querySelector("#back");
       button1.addEventListener("click", () => {
+<<<<<<< HEAD
         profileContainer.style.display = "block";
+=======
+>>>>>>> temp
         exitContainer.style.display = "none";
         container.style.filter = "none";
       });
@@ -201,7 +226,11 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: JSON.stringify({ answers }), // Convert the answers array to JSON
       })
+<<<<<<< HEAD
         .then((response) => {
+=======
+        .then((response) => {                                     
+>>>>>>> temp
           if (!response.ok) {
             throw new Error("Failed to analyze answers.");
           }
@@ -212,11 +241,19 @@ document.addEventListener("DOMContentLoaded", () => {
           if (
             result.data?.result &&
             result.data?.header &&
+<<<<<<< HEAD
             result.data?.resultKey
           ) {
             const headerValue = result.data.header;
             const resultValue = result.data.result;
             const resultKey = result.data.resultKey;
+=======
+            result.data?.key
+          ) {
+            const headerValue = result.data.header;
+            const resultValue = result.data.result;
+            const resultKey = result.data.key;
+>>>>>>> temp
 
             // Save both values in localStorage separately
             localStorage.setItem("headerValue", headerValue);
@@ -310,7 +347,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputField = document.querySelector("#text");
   const chatContainer = document.querySelector("#chat-history-container");
   const chatForm = document.querySelector("#chat-form");
+<<<<<<< HEAD
 
+=======
+  const sendButton = document.querySelector("#send-btn");
+  
+>>>>>>> temp
   // Function to add a message to the chat container
   function addMessageToChat(message, sender) {
     const messageDiv = document.createElement("div");
@@ -319,6 +361,7 @@ document.addEventListener("DOMContentLoaded", () => {
     chatContainer.appendChild(messageDiv);
     chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll to bottom
   }
+<<<<<<< HEAD
 
   // Event listener for form submission
   chatForm?.addEventListener("submit", async (event) => {
@@ -361,4 +404,89 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+=======
+  
+  // Function to show "AI is typing..." message
+  function showTypingIndicator() {
+    const typingIndicator = document.createElement("div");
+    typingIndicator.textContent = "در حال نوشتن...";
+    typingIndicator.className = "typing-indicator";
+    typingIndicator.id = "typing-indicator"; // Assign an ID for easy removal
+    chatContainer.appendChild(typingIndicator);
+    chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll to bottom
+  }
+  function showDefaultText(){
+    const defaultText = document.createElement('div');
+    defaultText.textContent =  'سلام من اینجام که به تو کمک کنم هر سوالی داری از من بپرس ';
+    defaultText.className = 'default-text';
+    defaultText.id = 'default-text';
+    chatContainer.appendChild(defaultText);
+  }
+  showDefaultText();
+  function removeDefaulttext(){
+    const textShow = document.querySelector('#default-text');
+    if(textShow){
+      chatContainer.removeChild(textShow);
+    }
+  }
+  
+  // Function to remove "AI is typing..." message
+  function removeTypingIndicator() {
+    const typingIndicator = document.querySelector("#typing-indicator");
+    if (typingIndicator) {
+      chatContainer.removeChild(typingIndicator);
+    }
+  }
+  sendButton.addEventListener('click', () => {
+    removeDefaulttext();
+  })
+  
+  // Event listener for form submission
+  chatForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const userMessage = inputField.value.trim();
+  
+    if (userMessage !== "") {
+      // Add user's message to chat
+      addMessageToChat(userMessage, "user");
+  
+      // Clear input field
+      inputField.value = "";
+      
+      // Show "AI is typing..." indicator
+      showTypingIndicator();
+  
+      try {
+        // Send the user's message to the backend API
+        const response = await fetch("http://localhost:5505/api/users/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: userMessage }),
+        });
+  
+        // Handle the backend response
+        if (response.ok) {
+          const data = await response.json();
+          removeTypingIndicator(); // Remove "AI is typing..." indicator
+          if (data.reply) {
+            // Add AI's reply to chat
+            addMessageToChat(data.reply, "ai");
+          } else {
+            addMessageToChat("پاسخی دریافت نشد.", "ai");
+          }
+        } else {
+          removeTypingIndicator(); // Remove "AI is typing..." indicator
+          addMessageToChat("مشکلی پیش آمد. لطفاً دوباره تلاش کنید.", "ai");
+        }
+      } catch (error) {
+        console.error("Error communicating with API:", error);
+        removeTypingIndicator(); // Remove "AI is typing..." indicator
+        addMessageToChat("مشکلی در ارتباط با سرور وجود دارد.", "ai");
+      }
+    }
+  });
+  
+>>>>>>> temp
 });
