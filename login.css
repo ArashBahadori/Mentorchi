@@ -15,7 +15,7 @@
     box-sizing: border-box;
 }
 body{
-    overflow-y: hidden;
+    overflow: hidden;
     background: #FFF5E5;
     display: flex;
     width: 100%;
@@ -92,7 +92,10 @@ body{
     background: #D4BDAC;
     margin: auto;
     position: relative;
+    left: 550px;
+    bottom: 200px;
     top: 150px;
+    z-index: 2;
 }
 .login-box .enter{
     font-family: 'MahboubehMehravar', sans-serif;
@@ -193,3 +196,18 @@ body{
     font-size: 0.8em;
     display: none;
 }
+.rblob-container .red-blob{
+    position: relative;
+    right: 850px;
+    bottom: 500px;
+    z-index: 1;
+    opacity: 80%;
+  }
+  .bblob-container .blue-blob{
+    position: relative;
+    transform: scale(0.7);
+    left: 2150px;
+    bottom: 50px;
+    z-index: 1;
+    opacity: 80%;
+  }

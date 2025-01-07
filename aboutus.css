@@ -90,6 +90,8 @@ body{
 
 .description{
     width: 800px;
+    position: relative;
+    bottom: 1250px;
 }
 .description h1{
     font-family: 'plasma', sans-serif;
@@ -105,10 +107,15 @@ body{
     right: 52%;
     top: 150px;
 }
-
+.description a{
+    text-decoration: none;
+    color: #000000;
+    
+}
 .footer{
     position: relative;
-    top: 27%;
+    bottom: 2000px;
+    z-index: 2;
 }
 .footer .footer-link a{
     position: relative;
@@ -134,3 +141,20 @@ body{
     align-items: center;
     color: #807267;
  }
+
+ .rblob-container .red-blob{
+    position: relative;
+    transform: scale(0.8);
+    left: 450px;
+    bottom: 100px;
+    z-index: 1;
+    opacity: 80%;
+  }
+  .bblob-container .blue-blob{
+    position: relative;
+    transform: scale(0.6);
+    right: 800px;
+    bottom: 550px;
+    z-index: 1;
+    opacity: 80%;
+  }

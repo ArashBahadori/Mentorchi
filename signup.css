@@ -13,7 +13,7 @@ body {
     font-family: mahbu ,sans-serif;
     display: flex;
     background-color: #fff5e5;
-    overflow-y: hidden;
+    overflow: hidden;
 } 
 input::placeholder {
     text-align: right;
@@ -30,10 +30,12 @@ input::placeholder {
     display: flex;
     margin: auto;
     position: relative;
-    top: 150px;
+    left: 520px;
+    bottom: 200px;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    z-index: 2;
 }
 .signup-container .container{
     margin-top: 20px;
@@ -109,4 +111,20 @@ h2 {
     font-family: 'MahboubehMehravar', sans-serif;
     font-size: 0.8em;
     display: none;
+  }
+
+ .rblob-container .red-blob{
+    position: relative;
+    left: 500px;
+    bottom: 600px;
+    z-index: 1;
+    opacity: 80%;
+  }
+  .bblob-container .blue-blob{
+    position: relative;
+    transform: scale(0.7);
+    left: 500px;
+    bottom: 200px;
+    z-index: 1;
+    opacity: 80%;
   }

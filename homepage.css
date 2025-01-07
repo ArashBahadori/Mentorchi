@@ -14,6 +14,9 @@
     font-size: 16px;
     scroll-behavior: smooth;
 }
+.main{
+    height: 1800px;
+}
 body{
     background: #FFF5E5;
     font-family: 'MahboubehMehravar', sans-serif;
@@ -30,13 +33,12 @@ body{
     width: 1000px;
     height: 80px;
     position: fixed;
-    z-index: 1;
     display: flex;
     justify-content: space-between;
     margin: 0px 315px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    z-index: 4;
+    z-index: 5;
 }
 .container .nav-bar .nav-btn{
     background: none;
@@ -120,9 +122,10 @@ body{
     z-index: 2;
 }
 .main .description p{
-    width: 600px;
+    width: 700px;
+    font-size: 17px;
     position: absolute;
-    right: 90px;
+    right: 50px;
     top: 40px;
     padding-top: 200px;
     margin-top: -200px;
@@ -150,18 +153,15 @@ body{
     width: 60%;
     position: relative;
     left: 430px;
+    bottom: 150px;
     opacity: 80%;
     z-index: 1;
 }   
 
 .question{
     position: relative;
-<<<<<<< HEAD
-    margin-top: -900px;
-=======
-    margin-top: -800px;
->>>>>>> 1db7c3ec0453d65e1afb09c06f1c80e888741c87
-    z-index: 2;
+    bottom: 750px;
+    z-index: 4;
     padding-top: 100px; 
 }
 .question h1{
@@ -243,7 +243,7 @@ body{
    .faq input[type="checkbox"]:checked + label {
     display: block;
     background: #D4BDAC;
-    height: 225px;
+    height: 130px;
     transition: height 0.8s;
   }
   
@@ -279,7 +279,7 @@ body{
 
 .footer{
     position: relative;
-    margin-bottom: 1000px;
+    bottom: 500px;
     z-index: 3;
 }
 .footer .footer-link a{

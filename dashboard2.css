@@ -331,3 +331,18 @@ body{
     display: block;
     word-break: break-all;
 }
+.user-message{
+    border-radius: 20px;
+    border-bottom-right-radius: 5px;
+}
+
+.ai-message{
+    border-radius: 20px;
+    border-bottom-left-radius: 5px;
+}
+
+.loading{
+    margin: 10px 0;
+    font-style: italic;
+    color: #555;
+}

@@ -156,18 +156,18 @@ document.addEventListener('DOMContentLoaded', () => {
             showError('password-error', 'رمزعبور را وارد کنید');
             hasError = true;
         }
-        if(!repeatPassword){
+        if (!repeatPassword) {
             showError('repeat-password-error', 'رمزعبور را تکرار کنید');
             hasError = true;
         }
-        if(password && repeatPassword && password !== repeatPassword){
+        if (password && repeatPassword && password !== repeatPassword) {
             showError('wrong-password', '.تکرار رمز عبور اشتباه است');
             hasError = true;
         }
         if (hasError) {
             return;
         }
-    
+
         const url = "http://localhost:5505/api/users/register";
 
         try {
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             errorMessageElement.textContent = message;
             errorMessageElement.style.display = 'block';
         }
-        
+
         // Function to clear all error messages
         function clearErrors() {
             document.querySelectorAll('.error-message').forEach((error) => {
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 input.classList.remove('error-field');
             });
         }
-        
+
         // Function to handle backend errors dynamically
         function handleBackendErrors(data) {
             if (data.errors) {
@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // If there's a generic error
                 alert(data.message);
             }
-        }        
+        }
     });
 
 
@@ -307,21 +307,72 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'field.html';
     });
 
+
+    //MENTORCHI CHATBOT
+    // Get DOM elements
+    const chatWindow = document.getElementById('chat-history');
+    const messageInput = document.getElementById('text');
+    const sendButton = document.getElementById('send-btn');
+
+    document.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent the page from refreshing
+        sendMessage(); // Call the sendMessage function
+      });
+      
+
+    // Function to append a message to the chat
+    function appendMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', sender === 'user' ? 'user-message' : 'ai-message');
+        messageDiv.textContent = text;
+        chatWindow.appendChild(messageDiv);
+        chatWindow.scrollTop = chatWindow.scrollHeight; // Auto-scroll to the bottom
+    }
+
+    // Function to send a message
+    async function sendMessage() {
+        const userMessage = messageInput.value.trim();
+        if (!userMessage) return; // Prevent empty messages
+
+        appendMessage(userMessage, 'user'); // Show user's message
+        messageInput.value = ''; // Clear input
+
+        // Show loading indicator
+        const loadingIndicator = document.createElement('div');
+        loadingIndicator.classList.add('loading');
+        loadingIndicator.textContent = 'AI is typing...';
+        chatWindow.appendChild(loadingIndicator);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+
+        try {
+            // Send user message to the AI API
+            const response = await fetch('Http://localhost:5505/api/users/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userMessage }),
+            });
+
+            const data = await response.json();
+            loadingIndicator.remove(); // Remove loading indicator
+
+            // Append AI's response
+            appendMessage(data.response, 'ai');
+        } catch (error) {
+            console.error('Error fetching AI response:', error);
+            loadingIndicator.textContent = 'Error fetching response.';
+        }
+    }
+
+    // Add event listener to the send button
+    sendButton.addEventListener('click', sendMessage);
+
+    // Allow pressing Enter to send a message
+    messageInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+
+
 });
 
-//MENTORCHI CHATBOT
-document.querySelector('#send-btn').addEventListener('click', (event) => {
-  
-    event.preventDefault();
-  
-    const chatHistory = document.querySelector('#text').value;
-    const CHcontainer = document.querySelector('#chat-history-container');
-  
-    if(chatHistory.trim() != ""){
-      const messageDiv = document.createElement('div');
-      messageDiv.textContent = chatHistory;
-      messageDiv.className = 'message';
-      CHcontainer.appendChild(messageDiv);
-    }
-    document.querySelector('#text').value = "";
-  });
+
+
