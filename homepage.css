@@ -156,11 +156,7 @@ body{
 
 .question{
     position: relative;
-<<<<<<< HEAD
     margin-top: -900px;
-=======
-    margin-top: -800px;
->>>>>>> 1db7c3ec0453d65e1afb09c06f1c80e888741c87
     z-index: 2;
     padding-top: 100px; 
 }

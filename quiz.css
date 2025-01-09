@@ -16,13 +16,14 @@
 body{
     background: #FFF5E5;
     font-family: 'MahboubehMehravar', sans-serif;
-    height: 250vh;
+    /* height: 250vh; */
 }
 .container{
     display: flex;
     justify-content: center;
     margin-right: 0;
     margin-left: 0;
+    
 }
 
 .container .main {
@@ -40,7 +41,7 @@ body{
     margin: 0px auto;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    z-index: 4;
+    
 }
 .container .nav-bar .nav-link{
     top: 23px;
@@ -166,3 +167,14 @@ body{
     align-items: center;
     color: #807267;
  }
+
+.error-style{
+    z-index: 2;
+    position: fixed; 
+    top: 100px;
+    right: 700px; 
+    color: white;
+    padding: 10px; 
+    display: none; 
+    border-radius: 5px;
+}
