@@ -14,16 +14,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".nav .buttons .btn"); //disable all buttns except quiz button
   const quizButton = document.getElementById("quiz_button");
   buttons.forEach((button) => {
-    if (button != quizButton){
+    if (button != quizButton) {
       button.disabled = true;
-    } 
+    }
   });
   if (quizButton) {
     quizButton.addEventListener("click", () => {
       window.location.href = "quiz.html"; // Navigate to the quiz page
     });
   }
-  
+
   //IIFE (Immediately Invoked Function Expression)
   let { setSection } = (() => {
     // switch dashbords pages
@@ -83,6 +83,28 @@ document.addEventListener("DOMContentLoaded", () => {
       const email = document.querySelector("#email_login").value;
       const password = document.querySelector("#password_login").value;
       const url = "http://localhost:5505/api/users/login";
+      const errorContainer = document.querySelector("#login-error");
+      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+      if (!email || !password) {
+        errorContainer.textContent = "تمامی فیلد ها الزامی است";
+        errorContainer.style.background = "red";
+        errorContainer.style.display = "block";
+        setTimeout(() => {
+          errorContainer.style.display = "none";
+        }, 3000);
+        return;
+      }
+      if (!emailPattern.test(email)) {
+        errorContainer.textContent = "ایمیل نامعتبر است";
+        errorContainer.style.background = "red";
+        errorContainer.style.display = "block";
+        setTimeout(() => {
+          errorContainer.style.display = "none";
+        }, 3000);
+
+        return;
+      }
 
       try {
         const response = await fetch(url, {
@@ -98,8 +120,14 @@ document.addEventListener("DOMContentLoaded", () => {
         if (response.ok) {
           window.location.href = "dashboard2.html";
         } else {
-          console.error("Login error:", data);
-          alert(data.message || "Invalid email or password.");
+          errorContainer.textContent = "ایمیل یا رمز عبور اشتباه است";
+          errorContainer.style.background = "red";
+          errorContainer.style.display = "block";
+          setTimeout(() => {
+            errorContainer.style.display = "none";
+          }, 3000);
+
+          return;
         }
       } catch (error) {
         console.error("Error:", error.message);
@@ -116,10 +144,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = document.querySelector("#email_signup").value;
     const name = document.querySelector("#name_signup").value;
     const password = document.querySelector("#password_signup").value;
-    const errorContainer = document.querySelector("#error");
-
+    const errorContainer = document.querySelector("#signup-error");
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (!email || !name || !password) {
       errorContainer.textContent = "تمامی فیلد ها الزامی است";
+      errorContainer.style.background = "red";
+      errorContainer.style.display = "block";
+      setTimeout(() => {
+        errorContainer.style.display = "none";
+      }, 3000);
+
+      return;
+    }
+    if (!emailPattern.test(email)) {
+      errorContainer.textContent = "ایمیل نامعتبر است";
       errorContainer.style.background = "red";
       errorContainer.style.display = "block";
       setTimeout(() => {
@@ -168,86 +206,142 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.selectOnlyOne = selectOnlyOne;
+
   document
     .querySelector("#acceptance-button")
     ?.addEventListener("click", () => {
-      // should be complited
       window.location.href = "dashboard2.html";
     });
 
-  document
-    .querySelector(".confirm-btn #acceptance-btn")
-    ?.addEventListener("click", () => {
-      // Collect all input elements
-      const inputs = document.querySelectorAll(
-        '.quiz-form input[type="checkbox"]:checked'
-      );
-      const answers = [];
+  document.querySelector("#acceptance-btn")?.addEventListener("click", () => {
+    const errorContainer = document.querySelector("#quiz-error");
+    const questions = document.querySelectorAll(".questions");
+    let counter = 0;
 
-      // Loop through the selected inputs and store their values
-      inputs.forEach((input) => {
-        answers.push(Number(input.value)); // Convert value to a number
-      });
+    // Ensure every question element has a unique ID.
+    questions.forEach((question) => {
+      question.id = `question-0${++counter}`;
+    });
 
-      // Validate: Ensure 10 answers are selected
-      if (answers.length !== 10) {
-        alert("Please answer all questions!");
-        return;
+    const inputs = document.querySelectorAll(
+      '.quiz-form input[type="checkbox"]'
+    );
+    const answers = [];
+    const unansweredQuestions = [];
+
+    // Collect answers and track unanswered questions
+    inputs.forEach((input) => {
+      if (input.checked) {
+        answers.push(Number(input.value));
+      } else {
+        unansweredQuestions.push(input.closest(".questions")); // Ensure we track the parent question
+      }
+    });
+
+    // Check if all questions are answered
+    if (answers.length !== 10) {
+      errorContainer.textContent = "لطفا تمامی سوالات را پاسخ دهید";
+      errorContainer.style.background = "red";
+      errorContainer.style.display = "block";
+
+      // Hide the error message after 3 seconds
+      setTimeout(() => {
+        errorContainer.style.display = "none";
+      }, 3000);
+
+      // Log unanswered questions for debugging
+      console.log("Unanswered questions:", unansweredQuestions);
+
+      // Add fragment to URL for first unanswered question without page refresh
+      if (unansweredQuestions.length > 0) {
+        const firstUnansweredQuestion = unansweredQuestions[0];
+        const questionId = firstUnansweredQuestion?.id; // Ensure we get the ID of the first unanswered question
+
+        console.log("First unanswered question ID:", questionId); // Debug log to ensure ID is correct
+
+        // Update the URL without refreshing the page
+        if (questionId) {
+          history.pushState(null, null, `#${questionId}`);
+
+          // Scroll to the unanswered question
+          const questionElement = document.getElementById(questionId);
+          if (questionElement) {
+            questionElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          } else {
+            console.log("Question element not found:", questionId); // Debugging missing question element
+          }
+        }
       }
 
-      // Send collected answers to the backend
-      fetch("http://localhost:5505/api/users/analyze-answers", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ answers }), // Convert the answers array to JSON
-      })
-        .then((response) => {                                     
-          if (!response.ok) {
-            throw new Error("Failed to analyze answers.");
-          }
-          return response.json();
-        })
-        .then((result) => {
-          // Check if result.data.result and result.data.header exist
-          if (
-            result.data?.result &&
-            result.data?.header &&
-            result.data?.key
-          ) {
-            const headerValue = result.data.header;
-            const resultValue = result.data.result;
-            const resultKey = result.data.key;
-
-            // Save both values in localStorage separately
-            localStorage.setItem("headerValue", headerValue);
-            localStorage.setItem("resultValue", resultValue);
-            localStorage.setItem("resultKey", resultKey);
-
-            // Redirect to field.html
-            window.location.href = "field.html";
-          }
-        })
-        .catch((error) => {
-          console.error("Error analyzing quiz:", error);
-          alert(
-            "There was an error processing your answers. Please try again."
-          );
-        });
-    });
-  //forgetpassword
-  document.querySelector("#forgot-btn")?.addEventListener("click", () => {
-    const emailField = document.querySelector("#email");
-
-    if (!emailField || !emailField.value) {
-      console.error("Email field is empty or not found");
-      alert("Please enter your email address."); // User-friendly alert
       return;
     }
 
-    const email = emailField.value;
+    // Process answers if all are provided
+    fetch("http://localhost:5505/api/users/analyze-answers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ answers }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to analyze answers.");
+        }
+        return response.json();
+      })
+      .then((result) => {
+        if (result.data?.result && result.data?.header && result.data?.key) {
+          const headerValue = result.data.header;
+          const resultValue = result.data.result;
+          const resultKey = result.data.key;
 
+          localStorage.setItem("headerValue", headerValue);
+          localStorage.setItem("resultValue", resultValue);
+          localStorage.setItem("resultKey", resultKey);
+
+          window.location.href = "field.html";
+        }
+      })
+      .catch((error) => {
+        console.error("Error analyzing quiz:", error);
+        alert("There was an error processing your answers. Please try again.");
+      });
+  });
+
+  //forgetpassword
+  document.querySelector("#forgot-btn")?.addEventListener("click", () => {
+    const emailField = document.querySelector("#email");
+    const errorContainer = document.querySelector("#forgotPassword-error");
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+    if (!emailField || !emailField.value) {
+      errorContainer.textContent = "ایمیل خود را وارد کنید";
+      errorContainer.style.background = "red";
+      errorContainer.style.display = "block";
+
+      // Hide the error message after 3 seconds
+      setTimeout(() => {
+        errorContainer.style.display = "none";
+      }, 3000);
+      return;
+    }
+
+    if (!emailPattern.test(emailField.value)) {
+      errorContainer.textContent = "ایمیل نامعتبر است";
+      errorContainer.style.background = "red";
+      errorContainer.style.display = "block";
+
+      // Hide the error message after 3 seconds
+      setTimeout(() => {
+        errorContainer.style.display = "none";
+      }, 3000);
+      return;
+    }
+    const email = emailField.value;
     fetch("http://localhost:5505/api/users/forgot-password", {
       method: "POST",
       headers: {
@@ -270,12 +364,10 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("An error occurred. Please try again."); // User-friendly alert
       });
   });
-  document
-    .querySelector("#reset-password-btn")
-    ?.addEventListener("click", () => {
+  document.querySelector("#reset-password-btn")?.addEventListener("click", () => {
       const token = document.querySelector("#token-box").value;
       const password = document.querySelector("#new-password").value;
-
+      
       fetch("http://localhost:5505/api/users/reset-password", {
         method: "post",
         headers: {
@@ -294,6 +386,7 @@ document.addEventListener("DOMContentLoaded", () => {
           console.error("There was a problem with the fetch operation:", error);
           alert("An error occurred. Please try again."); // User-friendly alert
         });
+        window.location.href = "dashboard2.html";
     });
   //save cheched checkbox
   const checkboxes = document.querySelectorAll(
@@ -313,7 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatContainer = document.querySelector("#chat-history-container");
   const chatForm = document.querySelector("#chat-form");
   const sendButton = document.querySelector("#send-btn");
-  
+
   // Function to add a message to the chat container
   function addMessageToChat(message, sender) {
     const messageDiv = document.createElement("div");
@@ -322,7 +415,7 @@ document.addEventListener("DOMContentLoaded", () => {
     chatContainer.appendChild(messageDiv);
     chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll to bottom
   }
-  
+
   // Function to show "AI is typing..." message
   function showTypingIndicator() {
     const typingIndicator = document.createElement("div");
@@ -332,21 +425,22 @@ document.addEventListener("DOMContentLoaded", () => {
     chatContainer.appendChild(typingIndicator);
     chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll to bottom
   }
-  function showDefaultText(){
-    const defaultText = document.createElement('div');
-    defaultText.textContent =  'سلام من اینجام که به تو کمک کنم هر سوالی داری از من بپرس ';
-    defaultText.className = 'default-text';
-    defaultText.id = 'default-text';
-    chatContainer.appendChild(defaultText);
+  function showDefaultText() {
+    const defaultText = document.createElement("div");
+    defaultText.textContent =
+      "سلام، آماده‌ای دنیای برنامه‌نویسی رو کشف کنی؟ من اینجا هستم تا تو این مسیر بهت کمک کنم!";
+    defaultText.className = "default-text";
+    defaultText.id = "default-text";
+    chatContainer?.appendChild(defaultText);
   }
   showDefaultText();
-  function removeDefaulttext(){
-    const textShow = document.querySelector('#default-text');
-    if(textShow){
+  function removeDefaulttext() {
+    const textShow = document.querySelector("#default-text");
+    if (textShow) {
       chatContainer.removeChild(textShow);
     }
   }
-  
+
   // Function to remove "AI is typing..." message
   function removeTypingIndicator() {
     const typingIndicator = document.querySelector("#typing-indicator");
@@ -354,25 +448,25 @@ document.addEventListener("DOMContentLoaded", () => {
       chatContainer.removeChild(typingIndicator);
     }
   }
-  sendButton.addEventListener('click', () => {
+  sendButton?.addEventListener("click", () => {
     removeDefaulttext();
-  })
-  
+  });
+
   // Event listener for form submission
   chatForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
     const userMessage = inputField.value.trim();
-  
+
     if (userMessage !== "") {
       // Add user's message to chat
       addMessageToChat(userMessage, "user");
-  
+
       // Clear input field
       inputField.value = "";
-      
+
       // Show "AI is typing..." indicator
       showTypingIndicator();
-  
+
       try {
         // Send the user's message to the backend API
         const response = await fetch("http://localhost:5505/api/users/chat", {
@@ -382,7 +476,7 @@ document.addEventListener("DOMContentLoaded", () => {
           },
           body: JSON.stringify({ message: userMessage }),
         });
-  
+
         // Handle the backend response
         if (response.ok) {
           const data = await response.json();
@@ -404,5 +498,4 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
-  
 });

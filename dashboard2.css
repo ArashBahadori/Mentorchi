@@ -311,9 +311,10 @@ body{
 
 }
 .default-text{
-    margin-right: 150px;
+    margin: auto;
+    padding-right: 90px;
     margin-top: 40px;
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 .send-button{
     position: relative;
