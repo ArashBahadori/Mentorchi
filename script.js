@@ -1,16 +1,59 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+  const profileButton = document.querySelector(".btn-profile");
+  if(profileButton){
+    profileButton.addEventListener("click", () => {
+      window.location.href = "dashboard2.html";
+    });  
+  }
+  
   const signupButton = document.querySelector(".btn-signup");
   if (signupButton) {
     signupButton.addEventListener("click", () => {
       window.location.href = "signup.html";
     });
   }
+
   const loginButton = document.querySelector(".btn-login");
   if (loginButton) {
     loginButton.addEventListener("click", () => {
       window.location.href = "login.html";
     });
   }
+  
+
+
+// //IIFE (Immediately Invoked Function Expression)
+// let { setSection } = (() => {
+//   // switch dashbords pages
+//   let selectedSection = "roadmap";
+
+//   function setSection(section) {
+//     selectedSection = section;
+//     onSectionChanged();
+//   }
+
+//   function onSectionChanged() {
+//     document.querySelectorAll(".container2 > div").forEach((div) => {
+//       div.classList.add("hide");
+//       div.classList.remove("show");
+//     });
+
+//     const selectedElement = document.querySelector(`#${selectedSection}`);
+//     selectedElement?.classList.add("show");
+//     selectedElement?.classList.remove("hide");
+//     // selectedElement?.style.text.decoration: 'underline'; //???
+//   }
+
+//   // Initialize with default section
+
+//   return { setSection };
+// })();
+
+
+//   // Expose setSection to the global scope
+//   window.setSection = setSection;
+
   const buttons = document.querySelectorAll(".nav .buttons .btn"); //disable all buttns except quiz button
   const quizButton = document.getElementById("quiz_button");
   buttons.forEach((button) => {
@@ -24,70 +67,82 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  //IIFE (Immediately Invoked Function Expression)
-  let { setSection } = (() => {
-    // switch dashbords pages
-    let selectedSection = "roadmap";
 
-    function setSection(section) {
-      selectedSection = section;
-      onSectionChanged();
-    }
+  // //exit from account
+  // document
+  //   .querySelector("#exit_from_account")
+  //   ?.addEventListener("click", () => {
+  //     const container = document.querySelector("#dashbord-container");
+  //     const exitContainer = document.querySelector("#exit_container");
+  //     // const profileContainer = document.querySelector("#profile");
 
-    function onSectionChanged() {
-      document.querySelectorAll(".container2 > div").forEach((div) => {
-        div.classList.add("hide");
-        div.classList.remove("show");
-      });
+  //     exitContainer.style.display = "block";
+  //     container.style.filter = "blur(4px)";
 
-      const selectedElement = document.querySelector(`#${selectedSection}`);
-      selectedElement?.classList.add("show");
-      selectedElement?.classList.remove("hide");
-      // selectedElement?.style.text.decoration: 'underline'; //???
-    }
+  //     const button1 = document.querySelector("#back");
+  //     button1.addEventListener("click", () => {
+  //       exitContainer.style.display = "none";
+  //       container.style.filter = "none";
+  //     });
+  //     const button2 = document.querySelector("#exit");
+  //     button2.addEventListener("click", () => {
+  //       localStorage.removeItem("authToken");
+  //       window.location.href = "homepage.html";
+  //     });
+  //   });
 
-    // Initialize with default section
-
-    return { setSection };
-  })();
-
-  // Expose setSection to the global scope
-  window.setSection = setSection;
-  //exit from account
-  document
-    .querySelector("#exit_from_account")
-    ?.addEventListener("click", () => {
-      const container = document.querySelector("#dashbord-container");
-      const exitContainer = document.querySelector("#exit_container");
-      // const profileContainer = document.querySelector("#profile");
-
-      exitContainer.style.display = "block";
-      container.style.filter = "blur(4px)";
-
-      const button1 = document.querySelector("#back");
-      button1.addEventListener("click", () => {
-        exitContainer.style.display = "none";
-        container.style.filter = "none";
-      });
-      const button2 = document.querySelector("#exit");
-      button2.addEventListener("click", () => {
-        window.location.href = "homepage.html";
-      });
-    });
   //login
   const loginButtonInLoginPage = document.querySelector("#login_button");
-  if (loginButtonInLoginPage) {
-    loginButtonInLoginPage.addEventListener("click", async (event) => {
-      event.preventDefault();
+if (loginButtonInLoginPage) {
+  loginButtonInLoginPage.addEventListener("click", async (event) => {
+    event.preventDefault();
 
-      const email = document.querySelector("#email_login").value;
-      const password = document.querySelector("#password_login").value;
-      const url = "http://localhost:5505/api/users/login";
-      const errorContainer = document.querySelector("#login-error");
-      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    const email = document.querySelector("#email_login").value;
+    const password = document.querySelector("#password_login").value;
+    const url = "http://localhost:5505/api/users/login";
+    const errorContainer = document.querySelector("#login-error");
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
-      if (!email || !password) {
-        errorContainer.textContent = "تمامی فیلد ها الزامی است";
+    // Validate email and password
+    if (!email || !password) {
+      errorContainer.textContent = "تمامی فیلد ها الزامی است";
+      errorContainer.style.background = "red";
+      errorContainer.style.display = "block";
+      setTimeout(() => {
+        errorContainer.style.display = "none";
+      }, 3000);
+      return;
+    }
+    if (!emailPattern.test(email)) {
+      errorContainer.textContent = "ایمیل نامعتبر است";
+      errorContainer.style.background = "red";
+      errorContainer.style.display = "block";
+      setTimeout(() => {
+        errorContainer.style.display = "none";
+      }, 3000);
+      return;
+    }
+    
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // If login is successful, store the token in localStorage
+        localStorage.setItem("authToken", data.data.token); // Save token to localStorage
+        console.log(data.data.token + "   0");
+        // Optionally, you can redirect the user to the dashboard
+        window.location.href = "dashboard2.html";
+      } else {
+        // If there is an error (invalid credentials), show an error message
+        errorContainer.textContent = "ایمیل یا رمز عبور اشتباه است";
         errorContainer.style.background = "red";
         errorContainer.style.display = "block";
         setTimeout(() => {
@@ -95,46 +150,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 3000);
         return;
       }
-      if (!emailPattern.test(email)) {
-        errorContainer.textContent = "ایمیل نامعتبر است";
-        errorContainer.style.background = "red";
-        errorContainer.style.display = "block";
-        setTimeout(() => {
-          errorContainer.style.display = "none";
-        }, 3000);
+    } catch (error) {
+      console.error("Error:", error.message);
+      alert("Failed to connect to the server.");
+    }
+  });
+}
 
-        return;
-      }
 
-      try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-          window.location.href = "dashboard2.html";
-        } else {
-          errorContainer.textContent = "ایمیل یا رمز عبور اشتباه است";
-          errorContainer.style.background = "red";
-          errorContainer.style.display = "block";
-          setTimeout(() => {
-            errorContainer.style.display = "none";
-          }, 3000);
-
-          return;
-        }
-      } catch (error) {
-        console.error("Error:", error.message);
-        alert("Failed to connect to the server.");
-      }
-    });
-  }
   //sign up
 
   const signupButtonInSignupPage = document.querySelector("#signup_button");
@@ -182,6 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok) {
         window.location.href = "dashboard1.html"; //error
+        localStorage.setItem("authToken", data.data.token); 
       } else {
         console.error("Signup error:", data);
         alert(data.message || "An error occurred during signup.");
@@ -191,6 +215,20 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Failed to connect to the server.");
     }
   });
+
+  const authToken = localStorage.getItem("authToken");
+
+  
+  if (authToken) {
+    loginButton.style.display = "none";
+    signupButton.style.display = "none";
+    profileButton.style.display = "block";
+  } else {
+    loginButton.style.display = "block";
+    signupButton.style.display = "block";
+    profileButton.style.display = "none";
+  }
+
   //select only one answer
   function selectOnlyOne(selectedCheckbox, questionId) {
     const checkboxes = document.querySelectorAll(
@@ -498,4 +536,5 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+
 });

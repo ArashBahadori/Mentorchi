@@ -65,6 +65,17 @@ body{
     cursor: pointer;
     
 }
+.container .nav-bar .nav-btn .btn-profile{
+    font-family: 'MahboubehMehravar', sans-serif;
+    border: 1px solid #99887C;
+    font-size: 1.2em;
+    background: none;
+    padding: .6px;
+    width: 70px;;
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
 .container .nav-bar .nav-link{
     top: 23px;
     position: fixed;

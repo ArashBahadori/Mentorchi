@@ -1,448 +1,559 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>داشبورد</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-    />
-    <link rel="stylesheet" href="dashboard2.css" />
-  </head>
 
-  <body>
-    <div id="dashbord-container">
-      <div class="container" id="header-container">
-        <header class="header">
-          <div class="nav-bar">
-            <div class="nav-link">
-              <a href="">توضیحات</a>
-              <a href="">سوالات متداول</a>
-              <a href="aboutus.html">درباره ما</a>
-            </div>
-            <a href="homepage.html"
-              ><img src="mentorChi-logo.png" alt="" class="image"
-            /></a>
-          </div>
-        </header>
-      </div>
+<head>
+  <title>داشبورد</title>
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+  <link rel="stylesheet" href="dashboard2.css" />
+</head>
 
-      <div class="nav" id="navbar">
-        <form action="" class="buttons">
-          <button class="btn1" type="button" onclick="setSection('profile')">
-            <i class="bx bxs-user-circle"></i>
-          </button>
-          <button class="btn1" type="button" onclick="setSection('roadmap')">
-            نقشه راه
-          </button>
-          <button class="btn1" type="button" onclick="setSection('mentor')">
-            منتور
-          </button>
-          <button class="btn1" type="button" onclick="setSection('progress')">
-            نمودار پیشرفت
-          </button>
-        </form>
-      </div>
-      <main class="main">
-        <div class="container2" id="content-container">
-          <div class="profile-page hide" id="profile">
-            <div class="email">
-              <!-- i should add email address of my user using js-->
-              <p>ایمیل:</p>
-            </div>
-            <div class="change-password">
-              <p>تعویض رمز عبور:</p>
-              <form action="" class="inputs">
-                <input
-                  type="password"
-                  class="input"
-                  placeholder="رمز عبور قبلی"
-                />
-                <input
-                  type="password"
-                  class="input"
-                  placeholder="رمز عبور جدید"
-                />
-                <input
-                  type="password"
-                  class="input"
-                  placeholder="تکرار رمز عبورجدید"
-                />
-                <button class="btn" id= '-btn'>تایید</button>
-              </form>
-            </div>
-            <div class="exit-account">
-              <p>خروج از حساب کاربری:</p>
-              <button class="exit-btn" id="exit_from_account">خروج</button>
-            </div>
+<body>
+  <div id="dashbord-container">
+    <div class="container" id="header-container">
+      <header class="header">
+        <div class="nav-bar">
+          <div class="nav-link">
+            <a href="">توضیحات</a>
+            <a href="">سوالات متداول</a>
+            <a href="aboutus.html">درباره ما</a>
           </div>
-          <div class="roadmap-page show" id="roadmap">
-            <div class="frontend" id="content1">
-              <h1>مفاهیم پایه</h1>
-              <div>
-                <h2>html</h2>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox1" />
-                  <span>structure</span>
-                </label>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox2" />
-                  <span>forms</span>
-                </label>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox3" />
-                  <span>semantic elemets</span>
-                </label>
-              </div>
-              <div>
-                <h2>css</h2>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox4" />
-                  <span>colors</span>
-                </label>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox5" />
-                  <span>fonts</span>
-                </label>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox6" />
-                  <span>layout</span>
-                </label>
-              </div>
-              <div>
-                <h2>javascript basics</h2>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox7" />
-                  <span>variables</span>
-                </label>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox8" />
-                  <span>functions</span>
-                </label>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox9" />
-                  <span>DOM manipulation</span>
-                </label>
-              </div>
-              <h1>core skill</h1>
-              <div>
-                <h2>advanced html & css</h2>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox10" />
-                  <span>responsive design</span>
-                </label>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox11" />
-                  <span>multimedia</span>
-                </label>
-              </div>
-              <div>
-                <h2>javascript & DOM manipulation</h2>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox12" />
-                  <span>events</span>
-                </label>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox13" />
-                  <span>DOM traversal</span>
-                </label>
-              </div>
-              <h1>version control</h1>
-              <div>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox14" />
-                  <span> Git & GitHub</span>
-                </label>
-              </div>
-              <h1>advanced javascript</h1>
-              <div>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox15" />
-                  <span> ES6+ : modern features</span>
-                </label>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox16" />
-                  <span>APIs : fetch and display data</span>
-                </label>
-              </div>
-              <h1>css frameworks</h1>
-              <div>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox17" />
-                  <span>bootstrap or tailwind</span>
-                </label>
-              </div>
-              <h1>front-end frameworks</h1>
-              <div>
-                <h2>react</h2>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox18" />
-                  <span>components</span>
-                </label>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox19" />
-                  <span>props</span>
-                </label>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox20" />
-                  <span>state</span>
-                </label>
-                <label class="topic1">
-                  <input type="checkbox" id="checkbox21" />
-                  <span>hooks</span>
-                </label>
-              </div>
-            </div>
-            <div class="backend" id="content2">
-              <h1>مبانی برنامه نویسی</h1>
-              <div>
-                <h2>یک زبان برنامه نویسی را انتخاب کنید</h2>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox1" />
-                  <span>variables</span>
-                </label>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox2" />
-                  <span>data structures</span>
-                </label>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox3" />
-                  <span>conditionals</span>
-                </label>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox4" />
-                  <span>loops</span>
-                </label>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox5" />
-                  <span>functions</span>
-                </label>
-              </div>
-              <h1>وب سرورها و مبانی شبکه</h1>
-              <div>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox6" />
-                  <span>HTTP Protocol</span>
-                </label>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox7" />
-                  <span>Web Servers</span>
-                </label>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox8" />
-                  <span>REST APIs</span>
-                </label>
-              </div>
-              <h1>پایگاه های داده</h1>
-              <div>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox9" />
-                  <span>SQL Databases</span>
-                </label>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox10" />
-                  <span>NoSQL Databases</span>
-                </label>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox11" />
-                  <span>ORM</span>
-                </label>
-              </div>
-              <h1>فریم ورک های سمت سرور</h1>
-              <div>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox12" />
-                  <span>Framework Basics</span>
-                </label>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox13" />
-                  <span>Routing</span>
-                </label>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox14" />
-                  <span>Middleware</span>
-                </label>
-              </div>
-              <h1>Authentication and Authorization</h1>
-              <div>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox15" />
-                  <span>Authentication Basics</span>
-                </label>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox16" />
-                  <span>JWT</span>
-                </label>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox17" />
-                  <span>OAuth2 and Third-Party Authentication</span>
-                </label>
-              </div>
-              <h1>APIs and Data Interchange</h1>
-              <div>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox17" />
-                  <span>RESTful API Design</span>
-                </label>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox18" />
-                  <span>Data Formats</span>
-                </label>
-              </div>
-              <h1>امنیت</h1>
-              <div>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox19" />
-                  <span>اعتبار سنجی داده ها</span>
-                </label>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox20" />
-                  <span>رمزگذاری</span>
-                </label>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox21" />
-                  <span>مبانی امنیت</span>
-                </label>
-              </div>
-              <h1>version control</h1>
-              <div>
-                <label class="topic2">
-                  <input type="checkbox" id="checkbox22" />
-                  <span>Git & GitHub</span>
-                </label>
-              </div>
-            </div>
-            <div class="uiux" id="content3">
-              <h1>مبانی UI/UX</h1>
-              <div>
-                <label class="topic3">
-                  <input type="checkbox" id="checkbox1" />
-                  <span>UI در مقابل UX را درک کنید</span>
-                </label>
-                <label class="topic3">
-                  <input type="checkbox" id="checkbox2" />
-                  <span>اصول طراحی</span>
-                </label>
-                <label class="topic3">
-                  <input type="checkbox" id="checkbox3" />
-                  <span>طراحی کاربر محور</span>
-                </label>
-              </div>
-              <h1>تحقیق و درک کاربر</h1>
-              <div>
-                <label class="topic3">
-                  <input type="checkbox" id="checkbox4" />
-                  <span>تحقیق کاربر</span>
-                </label>
-                <label class="topic3">
-                  <input type="checkbox" id="checkbox5" />
-                  <span>Personas</span>
-                </label>
-                <label class="topic3">
-                  <input type="checkbox" id="checkbox6" />
-                  <span>تجزیه و تحلیل رقبا</span>
-                </label>
-              </div>
-              <h1>معماری اطلاعات</h1>
-              <div>
-                <label class="topic3">
-                  <input type="checkbox" id="checkbox7" />
-                  <span>Sitemaps</span>
-                </label>
-                <label class="topic3">
-                  <input type="checkbox" id="checkbox8" />
-                  <span>User Flows</span>
-                </label>
-                <label class="topic3">
-                  <input type="checkbox" id="checkbox9" />
-                  <span>Wireframes</span>
-                </label>
-              </div>
-              <h1>مبانی طراحی UI</h1>
-              <div>
-                <label class="topic3">
-                  <input type="checkbox" id="checkbox10" />
-                  <span>تئوری رنگ</span>
-                </label>
-                <label class="topic3">
-                  <input type="checkbox" id="checkbox11" />
-                  <span>تایپوگرافی</span>
-                </label>
-                <label class="topic3">
-                  <input type="checkbox" id="checkbox12" />
-                  <span>Layouts and Grids</span>
-                </label>
-              </div>
-              <h1>دسترسی و فراگیری</h1>
-              <div>
-                <label class="topic3">
-                  <input type="checkbox" id="checkbox13" />
-                  <span>اصول دسترسی</span>
-                </label>
-                <label class="topic3">
-                  <input type="checkbox" id="checkbox14" />
-                  <span>دسترسی به رنگ</span>
-                </label>
-                <label class="topic3">
-                  <input type="checkbox" id="checkbox15" />
-                  <span>طراحی فراگیر</span>
-                </label>
-              </div>
-              <h1>ابزارهای طراحی UI/UX</h1>
-              <div>
-                <label class="topic3">
-                  <input type="checkbox" id="checkbox16" />
-                  <span>Figma</span>
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="mentor-page hide" id="mentor">
-            <div class="chat-container">
-              <div class="chat-history" id="chat-history-container"></div>
-              <form class="chat-input" id="chat-form">
-                <input
-                  type="text"
-                  class="input"
-                  id="text"
-                  placeholder="اینجا بنویسید"
-                  required
-                />
-                <button type="submit" class="send-button" id="send-btn">
-                  <img
-                    src="Mentorchii/send-icon.png"
-                    alt="Send"
-                    class="send-icon"
-                  />
-                </button>
-              </form>
-            </div>
-          </div>
-          <div class="progress-page hide" id="progress">
-            <h1>progress page</h1>
-          </div>
+          <a href="homepage.html"><img src="mentorChi-logo.png" alt="" class="image" /></a>
         </div>
-      </main>
+      </header>
     </div>
-    <div class="exit-account-container hiden" id="exit_container">
-      <p>می خواهید از حساب کاربری خود خارج شوید؟</p>
+
+    <div class="nav" id="navbar">
       <form action="" class="buttons">
-        <button type="button" class="back-btn" id="back">انصراف</button>
-        <button type="button" class="exit-btn" id="exit">خروج</button>
+        <button class="btn1" type="button" onclick="setSection('profile')">
+          <i class="bx bxs-user-circle"></i>
+        </button>
+        <button class="btn1" type="button" onclick="setSection('roadmap')">
+          نقشه راه
+        </button>
+        <button class="btn1" type="button" onclick="setSection('mentor')">
+          منتور
+        </button>
       </form>
     </div>
-    <script>
-      const key = localStorage.getItem("resultKey");
-      const front = document.querySelector(".frontend");
-      const back = document.querySelector(".backend");
-      const uiux = document.querySelector(".uiux");
-      if (key == 1) {
-        front.style.display = "block";
-      } else if (key == 2) {
-        back.style.display = "block";
-      } else if (key == 3) {
-        uiux.style.display = "block";
+    <main class="main">
+      <div class="container2" id="content-container">
+        <div class="profile-page hide" id="profile">
+          <div class="email">
+            <!-- i should add email address of my user using js-->
+            <p>ایمیل:
+            <p class="usersemail" id="user-email"></p>
+            </p>
+          </div>
+          <div class="change-password">
+            <p>تعویض رمز عبور:</p>
+            <form action="" class="inputs">
+              <input type="password" class="input" id="old-password" placeholder="رمز عبور قبلی" />
+              <input type="password" class="input" id="new-password" placeholder="رمز عبور جدید" />
+              <input type="password" class="input" id="confirm-new-password" placeholder="تکرار رمز عبورجدید" />
+              <button class="btn" id='-btn'>تایید</button>
+            </form>
+          </div>
+          <div class="exit-account">
+            <p>خروج از حساب کاربری:</p>
+            <button class="exit-btn" id="exit_from_account">خروج</button>
+          </div>
+        </div>
+        <div class="roadmap-page show" id="roadmap">
+          <div class="frontend" id="content1">
+            <h1>مفاهیم پایه</h1>
+            <div>
+              <h2>html</h2>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox1" />
+                <span>structure</span>
+              </label>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox2" />
+                <span>forms</span>
+              </label>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox3" />
+                <span>semantic elemets</span>
+              </label>
+            </div>
+            <div>
+              <h2>css</h2>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox4" />
+                <span>colors</span>
+              </label>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox5" />
+                <span>fonts</span>
+              </label>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox6" />
+                <span>layout</span>
+              </label>
+            </div>
+            <div>
+              <h2>javascript basics</h2>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox7" />
+                <span>variables</span>
+              </label>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox8" />
+                <span>functions</span>
+              </label>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox9" />
+                <span>DOM manipulation</span>
+              </label>
+            </div>
+            <h1>core skill</h1>
+            <div>
+              <h2>advanced html & css</h2>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox10" />
+                <span>responsive design</span>
+              </label>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox11" />
+                <span>multimedia</span>
+              </label>
+            </div>
+            <div>
+              <h2>javascript & DOM manipulation</h2>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox12" />
+                <span>events</span>
+              </label>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox13" />
+                <span>DOM traversal</span>
+              </label>
+            </div>
+            <h1>version control</h1>
+            <div>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox14" />
+                <span> Git & GitHub</span>
+              </label>
+            </div>
+            <h1>advanced javascript</h1>
+            <div>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox15" />
+                <span> ES6+ : modern features</span>
+              </label>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox16" />
+                <span>APIs : fetch and display data</span>
+              </label>
+            </div>
+            <h1>css frameworks</h1>
+            <div>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox17" />
+                <span>bootstrap or tailwind</span>
+              </label>
+            </div>
+            <h1>front-end frameworks</h1>
+            <div>
+              <h2>react</h2>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox18" />
+                <span>components</span>
+              </label>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox19" />
+                <span>props</span>
+              </label>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox20" />
+                <span>state</span>
+              </label>
+              <label class="topic1">
+                <input type="checkbox" id="checkbox21" />
+                <span>hooks</span>
+              </label>
+            </div>
+          </div>
+          <div class="backend" id="content2">
+            <h1>مبانی برنامه نویسی</h1>
+            <div>
+              <h2>یک زبان برنامه نویسی را انتخاب کنید</h2>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox1" />
+                <span>variables</span>
+              </label>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox2" />
+                <span>data structures</span>
+              </label>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox3" />
+                <span>conditionals</span>
+              </label>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox4" />
+                <span>loops</span>
+              </label>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox5" />
+                <span>functions</span>
+              </label>
+            </div>
+            <h1>وب سرورها و مبانی شبکه</h1>
+            <div>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox6" />
+                <span>HTTP Protocol</span>
+              </label>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox7" />
+                <span>Web Servers</span>
+              </label>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox8" />
+                <span>REST APIs</span>
+              </label>
+            </div>
+            <h1>پایگاه های داده</h1>
+            <div>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox9" />
+                <span>SQL Databases</span>
+              </label>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox10" />
+                <span>NoSQL Databases</span>
+              </label>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox11" />
+                <span>ORM</span>
+              </label>
+            </div>
+            <h1>فریم ورک های سمت سرور</h1>
+            <div>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox12" />
+                <span>Framework Basics</span>
+              </label>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox13" />
+                <span>Routing</span>
+              </label>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox14" />
+                <span>Middleware</span>
+              </label>
+            </div>
+            <h1>Authentication and Authorization</h1>
+            <div>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox15" />
+                <span>Authentication Basics</span>
+              </label>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox16" />
+                <span>JWT</span>
+              </label>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox17" />
+                <span>OAuth2 and Third-Party Authentication</span>
+              </label>
+            </div>
+            <h1>APIs and Data Interchange</h1>
+            <div>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox17" />
+                <span>RESTful API Design</span>
+              </label>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox18" />
+                <span>Data Formats</span>
+              </label>
+            </div>
+            <h1>امنیت</h1>
+            <div>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox19" />
+                <span>اعتبار سنجی داده ها</span>
+              </label>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox20" />
+                <span>رمزگذاری</span>
+              </label>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox21" />
+                <span>مبانی امنیت</span>
+              </label>
+            </div>
+            <h1>version control</h1>
+            <div>
+              <label class="topic2">
+                <input type="checkbox" id="checkbox22" />
+                <span>Git & GitHub</span>
+              </label>
+            </div>
+          </div>
+          <div class="uiux" id="content3">
+            <h1>مبانی UI/UX</h1>
+            <div>
+              <label class="topic3">
+                <input type="checkbox" id="checkbox1" />
+                <span>UI در مقابل UX را درک کنید</span>
+              </label>
+              <label class="topic3">
+                <input type="checkbox" id="checkbox2" />
+                <span>اصول طراحی</span>
+              </label>
+              <label class="topic3">
+                <input type="checkbox" id="checkbox3" />
+                <span>طراحی کاربر محور</span>
+              </label>
+            </div>
+            <h1>تحقیق و درک کاربر</h1>
+            <div>
+              <label class="topic3">
+                <input type="checkbox" id="checkbox4" />
+                <span>تحقیق کاربر</span>
+              </label>
+              <label class="topic3">
+                <input type="checkbox" id="checkbox5" />
+                <span>Personas</span>
+              </label>
+              <label class="topic3">
+                <input type="checkbox" id="checkbox6" />
+                <span>تجزیه و تحلیل رقبا</span>
+              </label>
+            </div>
+            <h1>معماری اطلاعات</h1>
+            <div>
+              <label class="topic3">
+                <input type="checkbox" id="checkbox7" />
+                <span>Sitemaps</span>
+              </label>
+              <label class="topic3">
+                <input type="checkbox" id="checkbox8" />
+                <span>User Flows</span>
+              </label>
+              <label class="topic3">
+                <input type="checkbox" id="checkbox9" />
+                <span>Wireframes</span>
+              </label>
+            </div>
+            <h1>مبانی طراحی UI</h1>
+            <div>
+              <label class="topic3">
+                <input type="checkbox" id="checkbox10" />
+                <span>تئوری رنگ</span>
+              </label>
+              <label class="topic3">
+                <input type="checkbox" id="checkbox11" />
+                <span>تایپوگرافی</span>
+              </label>
+              <label class="topic3">
+                <input type="checkbox" id="checkbox12" />
+                <span>Layouts and Grids</span>
+              </label>
+            </div>
+            <h1>دسترسی و فراگیری</h1>
+            <div>
+              <label class="topic3">
+                <input type="checkbox" id="checkbox13" />
+                <span>اصول دسترسی</span>
+              </label>
+              <label class="topic3">
+                <input type="checkbox" id="checkbox14" />
+                <span>دسترسی به رنگ</span>
+              </label>
+              <label class="topic3">
+                <input type="checkbox" id="checkbox15" />
+                <span>طراحی فراگیر</span>
+              </label>
+            </div>
+            <h1>ابزارهای طراحی UI/UX</h1>
+            <div>
+              <label class="topic3">
+                <input type="checkbox" id="checkbox16" />
+                <span>Figma</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="mentor-page hide" id="mentor">
+          <div class="chat-container">
+            <div class="chat-history" id="chat-history-container"></div>
+            <form class="chat-input" id="chat-form">
+              <input type="text" class="input" id="text" placeholder="اینجا بنویسید" required />
+              <button type="submit" class="send-button" id="send-btn">
+                <img src="Mentorchii/send-icon.png" alt="Send" class="send-icon" />
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="progress-page hide" id="progress">
+          <h1>progress page</h1>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="exit-account-container hiden" id="exit_container">
+    <p>می خواهید از حساب کاربری خود خارج شوید؟</p>
+    <form action="" class="buttons">
+      <button type="button" class="back-btn" id="back">انصراف</button>
+      <button type="button" class="exit-btn" id="exit">خروج</button>
+    </form>
+  </div>
+  <script>
+    //IIFE (Immediately Invoked Function Expression)
+    let { setSection } = (() => {
+      // switch dashbords pages
+      let selectedSection = "roadmap";
+
+      function setSection(section) {
+        selectedSection = section;
+        onSectionChanged();
       }
-    </script>
-    <script src="script.js"></script>
-  </body>
+
+      function onSectionChanged() {
+        document.querySelectorAll(".container2 > div").forEach((div) => {
+          div.classList.add("hide");
+          div.classList.remove("show");
+        });
+
+        const selectedElement = document.querySelector(`#${selectedSection}`);
+        selectedElement?.classList.add("show");
+        selectedElement?.classList.remove("hide");
+        // selectedElement?.style.text.decoration: 'underline'; //???
+      }
+
+      // Initialize with default section
+
+      return { setSection };
+    })();
+
+
+    // Expose setSection to the global scope
+    window.setSection = setSection;
+
+    //exit from account
+    document
+      .querySelector("#exit_from_account")
+      ?.addEventListener("click", () => {
+        const container = document.querySelector("#dashbord-container");
+        const exitContainer = document.querySelector("#exit_container");
+        // const profileContainer = document.querySelector("#profile");
+
+        exitContainer.style.display = "block";
+        container.style.filter = "blur(4px)";
+
+        const button1 = document.querySelector("#back");
+        button1.addEventListener("click", () => {
+          exitContainer.style.display = "none";
+          container.style.filter = "none";
+        });
+        const button2 = document.querySelector("#exit");
+        button2.addEventListener("click", () => {
+          localStorage.removeItem("authToken");
+          window.location.href = "homepage.html";
+        });
+      });
+    function parseJwt(token) {
+      const base64Url = token.split('.')[1]; // بخش Payload
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/'); // اصلاح Base64 (برای تطبیق با URL-safe encoding)
+
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+
+      return JSON.parse(jsonPayload); // تبدیل به JSON
+    }
+    const token = localStorage.getItem('authToken'); // اینجا توکن رو وارد کنید
+    const decodedToken = parseJwt(token);
+    console.log(decodedToken); // اطلاعات دیکد شده رو نمایش میده
+
+    const userEmail = decodedToken.email; // ایمیل را از توکن استخراج می‌کنیم
+    const userEmailElement = document.querySelector("#user-email");
+    if (userEmailElement) {
+      userEmailElement.textContent = userEmail;
+    } else {
+      console.error('userEmailElement not found.');
+    }
+    //change password
+
+    document.getElementById('-btn').addEventListener('click', async (event) => {
+      event.preventDefault(); // Prevent form submission
+
+      // Get input values
+      const oldPassword = document.getElementById('old-password').value;
+      const newPassword = document.getElementById('new-password').value;
+      const confirmNewPassword = document.getElementById('confirm-new-password').value;
+
+      // Getting email from localStorage or the decoded token (assuming it's already decoded and saved)
+      const email = decodedToken.email;  // You can replace this with your decoded JWT logic if needed
+
+      // Validation
+      if (!oldPassword || !newPassword || !confirmNewPassword) {
+        alert('لطفاً تمام فیلدها را پر کنید.');
+        return;
+      }
+
+      if (newPassword !== confirmNewPassword) {
+        alert('رمز عبور جدید و تکرار آن مطابقت ندارند.');
+        return;
+      }
+
+      // Prepare data for the API request
+      const data = {
+        email,
+        oldPassword,
+        newPassword,
+      };
+
+      try {
+        // Send request to the backend
+        const response = await fetch('http://localhost:5505/api/change-password', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        // Check if response is OK
+        if (!response.ok) {
+          const errorMessage = await response.text();
+          alert(`Error: ${errorMessage}`);
+          return;
+        }
+
+        // Handle response if success
+        const result = await response.json();
+        if (result.message) {
+          alert(result.message);
+          // Optionally, clear the form or redirect the user
+          document.getElementById('old-password').value = '';
+          document.getElementById('new-password').value = '';
+          document.getElementById('confirm-new-password').value = '';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('خطایی در ارتباط با سرور رخ داده است.');
+      }
+    });
+
+    const key = localStorage.getItem("resultKey");
+    const front = document.querySelector(".frontend");
+    const back = document.querySelector(".backend");
+    const uiux = document.querySelector(".uiux");
+    if (key == 1) {
+      front.style.display = "block";
+    } else if (key == 2) {
+      back.style.display = "block";
+    } else if (key == 3) {
+      uiux.style.display = "block";
+    }
+  </script>
+  <script src="script.js" defer></script>
+</body>
+
 </html>
