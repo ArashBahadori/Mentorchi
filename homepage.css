@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
     font-family: 'MahboubehMehravar';
     src: url(Mentorchii/Mahboubeh_mehravar.ttf);
 }
@@ -78,7 +78,7 @@ body{
     padding: 0px 50px;
     margin: 1px;
 }
-.container .header .image{/*it should be link to home page*/
+.container .header .image{
     top: 18px;
     position: fixed;
     left: 300px;
@@ -305,4 +305,315 @@ body{
     color: #807267;
  }
 
+ */
+ @font-face {
+    font-family: 'MahboubehMehravar';
+    src: url(Mentorchii/Mahboubeh_mehravar.ttf);
+}
+@font-face {
+    font-family: 'plasma';
+    src: url(Mentorchii/Plasma-Square-Dots-@behfont.ttf);
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    direction: rtl;
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+.main{
+    height: 1800px;
+}
+body{
+    background: #FFF5E5;
+    font-family: 'MahboubehMehravar', sans-serif;
+    height: 120vh;
+    overflow-x: hidden;
+}
+.container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.container .header{
+    background: #D4BDAC;
+    width: 1000px;
+    height: 80px;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 315px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    z-index: 5;
+}
+.container .nav-bar .nav-btn{
+    background: none;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+.container .nav-bar .nav-btn .btn-login{
+    font-family: 'MahboubehMehravar', sans-serif;
+    background: #99887C;
+    border-radius: 10px;
+    padding: 1px;
+    width: 70px;
+    font-size: 1.2em;
+    border: none;
+    margin: 0px 5px;
+    cursor: pointer;
+}
+.container .nav-bar .nav-btn .btn-signup{
+    font-family: 'MahboubehMehravar', sans-serif;
+    border: 1px solid #99887C;
+    font-size: 1.2em;
+    background: none;
+    padding: .6px;
+    width: 70px;;
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+.container .nav-bar .nav-link{
+    top: 23px;
+    position: fixed;
+    right: 550px;
+}
+.container .nav-bar .nav-link a{
+    text-decoration: none;
+    font-size: 1.2em;
+    color: black;
+    font-weight: bold;
+    padding: 0px 50px;
+    margin: 1px;
+}
+.container .header .image{/*it should be link to home page*/
+    top: 18px;
+    position: fixed;
+    left: 300px;
+    width: 50px;
+}
+.main .start{
+    margin-bottom: 200px;
+}
+.main .start .image{
+    width: 50%;
+    position: relative;
+    right: 35%;
+    top: 180px;
+}
+.main .start h1{
+    font-family: 'plasma';
+    position: absolute;
+    font-size: 6em;
+    right: 22%;
+    top: 35%;
+}
+.main .start p{
+    font-family: 'MahboubehMehravar', sans-serif;
+    position: relative;
+    right: 22%;
+    font-size: 1.1em;
+    bottom: 60px;
+    color: #807267;
+}
+
+.main .description{
+    width: 800px;
+    height: 300px;
+    background: #D4BDAC;
+    right: 25%;
+    bottom: 850px;
+    border-radius: 11px;
+    position: relative;
+    z-index: 2;
+}
+.main .description p{
+    width: 700px;
+    font-size: 17px;
+    position: absolute;
+    right: 50px;
+    top: 40px;
+    padding-top: 200px;
+    margin-top: -200px;
+
+}
+.main .description .quiz-link{
+    background: #5272CC;
+    width: 240px;
+    height: 43px;
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 270px;
+    bottom: 25px;
+    border-radius: 10px;
+}
+.main .description .quiz-link a{
+    text-decoration: none;
+    color: black;
+    font: 'MahboubehMehravar', sans-serif;
+}
+.main .bblob-container .blue-blob{
+    width: 60%;
+    position: relative;
+    left: 430px;
+    bottom: 150px;
+    opacity: 80%;
+    z-index: 1;
+}   
+
+.question{
+    position: relative;
+    bottom: 750px;
+    z-index: 4;
+    padding-top: 100px; 
+}
+.question h1{
+    font-family: plasma, sans-serif;
+    font-size: 1.7em;
+    position: relative;
+    right: 25%;
+    margin-bottom: 25px;
+  }
+  
+  .faq-heading {
+    font-family: 'MahboubehMehravar', sans-serif;
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 19px;
+    color: #000000;
+    background: #D4BDAC;
+    font-weight: bold;
+  }
+  
+  .faq-text {
+    font-family: 'MahboubehMehravar', sans-serif;
+    background: #D4BDAC;
+    color: #333333;
+    width:95%;
+    padding-left:20px;
+    padding-right: 20px;
+    margin-top: 20px;
+    margin-bottom:20px;
+  }
+  
+  .faq {
+    width: 800px;
+    margin: 0 auto;
+    border: none;
+    border-radius: 14px;
+    position: relative;
+    right: 5%;
+    z-index: 2;
+  }
+  
+  .faq label {
+    border: none;
+    border-radius: 14px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    height: 70px;
+    margin-left: 100px;
+    margin-bottom: 35px;
+    background-color: #D4BDAC;
+    border-bottom: 1px solid #D4BDAC;
+  }
+  
+  .faq input[type="checkbox"] {
+    display: none;
+  }
+  
+  .faq .faq-arrow {
+    width: 5px;
+    height: 5px;
+    transition: transform 0.8s;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.33);
+    border-right: 3px solid rgba(0, 0, 0, 0.33);
+    float: left;
+    position: relative;
+    top: -20px;
+    left: 27px;
+    transform: rotate(45deg);
+            
+  }
+  
+   .faq input[type="checkbox"]:checked + label > .faq-arrow {
+    transition: transform 0.8s;
+    transform: rotate(-45deg);          
+  }
+  
+   .faq input[type="checkbox"]:checked + label {
+    display: block;
+    background: #D4BDAC;
+    height: 130px;
+    transition: height 0.8s;
+  }
+  
+   .faq input[type='checkbox']:not(:checked) + label {
+    display: block;
+    transition: height 0.8s;
+    height: 50px;
+    
+  }
+  
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+.icon {
+    font-size: 16px;
+    position: relative;
+    right: 630px;
+}
+
+.question {
+    font-size: 18px;
+    color: black;    
+}
+
+.footer .rblob-container .red-blob{
+    width: 60%;
+    position: relative;
+    left: -900px;
+    opacity: 80%;
+    top: 200px;
+}
+
+.footer{
+    position: relative;
+    bottom: 500px;
+    z-index: 3;
+}
+.footer .footer-link a{
+    position: relative;
+    right: 21%;
+    top: 74px;
+    color: #000000;
+    z-index: 3;
+    text-decoration: none;
+}
+ .footer .image{
+    position: relative; 
+    right: 75%;
+    z-index: 3;
+    width: 50px;
+ }
+ .footer .text{
+    color: #333333;
+    margin-right: 1000px;
+    position: relative;
+    bottom: 10px;;
+ }
+ .footer .rights{
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+    color: #807267;
+ }
 
