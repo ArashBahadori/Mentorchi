@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+   
   const signupButton = document.querySelector(".btn-signup");
   if (signupButton) {
     signupButton.addEventListener("click", () => {
@@ -120,7 +121,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json();
 
         if (response.ok) {
-          localStorage.setItem("authToken", data.data.token);  // Save token to localStorage 
+          localStorage.setItem("authToken", data.data.token);  // Save token to localStorage
+          console.log(localStorage.getItem("authToken"));
+           
           window.location.href = "dashboard2.html";
         } else {
           errorContainer.textContent = "ایمیل یا رمز عبور اشتباه است";
@@ -147,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = document.querySelector("#email_signup").value;
     const name = document.querySelector("#name_signup").value;
     const password = document.querySelector("#password_signup1").value;
-    // const password1 = document.querySelector("#password_signup2").value;
+    const password1 = document.querySelector("#password_signup2").value;
     const errorContainer = document.querySelector("#signup-error");
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (!email || !name || !password) {
@@ -171,16 +174,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       return;
     }
-    // if(password != password1){
-    //   errorContainer.textContent = "تکرار رمز عبور اشتباه است";
-    //   errorContainer.style.background = "red";
-    //   errorContainer.style.display = "block";
-    //   setTimeout(() => {
-    //     errorContainer.style.display = "none";
-    //   }, 3000);
-
-    //   return;
-    // }
+    if(password != password1){
+      errorContainer.textContent = "تکرار رمز عبور اشتباه است";
+      errorContainer.style.background = "red";
+      errorContainer.style.display = "block";
+      setTimeout(() => {
+        errorContainer.style.display = "none";
+      }, 3000);
+      return;
+    }
 
     const url = "http://localhost:5505/api/users/register";
 
@@ -197,6 +199,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok) {
         window.location.href = "dashboard1.html"; //error
+        //localStorage.setItem("authToken", data.data.token); 
+        // console.log(localStorage.getItem("authToken"));
+
       } else {
         console.error("Signup error:", data);
         alert(data.message || "An error occurred during signup.");
@@ -206,6 +211,8 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Failed to connect to the server.");
     }
   });
+
+
   //select only one answer
   function selectOnlyOne(selectedCheckbox, questionId) {
     const checkboxes = document.querySelectorAll(
@@ -446,7 +453,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const token = localStorage.getItem("authToken"); // اینجا توکن رو وارد کنید
   const decodedToken = parseJwt(token);
-  console.log(decodedToken); // اطلاعات دیکد شده رو نمایش میده
+  console.log(decodedToken);
+ 
 
   const userEmail = decodedToken.email; // ایمیل را از توکن استخراج می‌کنیم
   const userEmailElement = document.querySelector("#user-email");
@@ -455,12 +463,10 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.error("userEmailElement not found.");
   }
-
+ 
   //change password 
    
-//change password 
-   
-document.getElementById('-btn')?.addEventListener('click', async (event) => { 
+document.getElementById('-btn').addEventListener('click', async (event) => { 
   event.preventDefault(); // Prevent form submission 
  
   // Get input values 
@@ -470,15 +476,30 @@ document.getElementById('-btn')?.addEventListener('click', async (event) => {
  
   // Getting email from localStorage or the decoded token (assuming it's already decoded and saved) 
   const email = decodedToken.email;  // You can replace this with your decoded JWT logic if needed 
- 
+ const errorContainer = document.querySelector("#change-password-error");
   // Validation 
   if (!oldPassword || !newPassword || !confirmNewPassword) { 
-    alert('لطفاً تمام فیلدها را پر کنید.'); 
+    errorContainer.textContent = " لطفاً تمام فیلدها را پر کنید.";
+      errorContainer.style.background = "red";
+      errorContainer.style.display = "block";
+
+      // Hide the error message after 3 seconds
+      setTimeout(() => {
+        errorContainer.style.display = "none";
+      }, 3000);
     return; 
   } 
  
   if (newPassword !== confirmNewPassword) { 
-    alert('رمز عبور جدید و تکرار آن مطابقت ندارند.'); 
+   
+    errorContainer.textContent = " رمز عبور جدید و تکرار آن مطابقت ندارند.";
+      errorContainer.style.background = "red";
+      errorContainer.style.display = "block";
+
+      // Hide the error message after 3 seconds
+      setTimeout(() => {
+        errorContainer.style.display = "none";
+      }, 3000);
     return; 
   } 
  
@@ -520,6 +541,7 @@ document.getElementById('-btn')?.addEventListener('click', async (event) => {
     alert('خطایی در ارتباط با سرور رخ داده است.'); 
   } 
 });
+   
 //exit from account 
   document 
     .querySelector("#exit_from_account") 
@@ -642,4 +664,6 @@ document.getElementById('-btn')?.addEventListener('click', async (event) => {
       }
     }
   });
+
+  
 });
