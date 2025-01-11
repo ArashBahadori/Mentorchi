@@ -179,3 +179,18 @@ body{
     position: relative;
     bottom: 40px;   
 }
+/* .rblob-container .red-blob{
+    position: relative;
+    right: 850px;
+    bottom: 500px;
+    z-index: 1;
+    opacity: 80%;
+  }
+  .bblob-container .blue-blob{
+    position: relative;
+    transform: scale(0.7);
+    left: 2150px;
+    bottom: 50px;
+    z-index: 1;
+    opacity: 80%;
+  } */

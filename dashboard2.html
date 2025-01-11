@@ -10,6 +10,8 @@
   </head>
 
   <body>
+    <div id="change-password-error" style = " position: fixed; top: 230px; right: 700px; color: white; background: #333; padding: 10px; display: none; border-radius: 5px; z-index: 2;"></div>
+
     <div id="dashbord-container">
       <div class="container" id="header-container">
         <header class="header">
@@ -47,7 +49,7 @@
           <div class="profile-page hide" id="profile">
             <div class="email">
               <!-- i should add email address of my user using js-->
-              <p>ایمیل:</p>
+              <p>ایمیل: <p id="user-email"></p></p>
             </div>
             <div class="change-password">
               <p>تعویض رمز عبور:</p>
@@ -55,16 +57,19 @@
                 <input
                   type="password"
                   class="input"
+                  id="old-password"
                   placeholder="رمز عبور قبلی"
                 />
                 <input
                   type="password"
                   class="input"
+                  id="new-password"
                   placeholder="رمز عبور جدید"
                 />
                 <input
                   type="password"
                   class="input"
+                  id="confirm-new-password"
                   placeholder="تکرار رمز عبورجدید"
                 />
                 <button class="btn" id= '-btn'>تایید</button>

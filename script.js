@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+   
   const signupButton = document.querySelector(".btn-signup");
   if (signupButton) {
     signupButton.addEventListener("click", () => {
@@ -54,25 +55,27 @@ document.addEventListener("DOMContentLoaded", () => {
   // Expose setSection to the global scope
   window.setSection = setSection;
   //exit from account
-  document
-    .querySelector("#exit_from_account")
-    ?.addEventListener("click", () => {
-      const container = document.querySelector("#dashbord-container");
-      const exitContainer = document.querySelector("#exit_container");
-      // const profileContainer = document.querySelector("#profile");
-
-      exitContainer.style.display = "block";
-      container.style.filter = "blur(4px)";
-
-      const button1 = document.querySelector("#back");
-      button1.addEventListener("click", () => {
-        exitContainer.style.display = "none";
-        container.style.filter = "none";
-      });
-      const button2 = document.querySelector("#exit");
-      button2.addEventListener("click", () => {
-        window.location.href = "homepage.html";
-      });
+  //exit from account 
+  document 
+    .querySelector("#exit_from_account") 
+    ?.addEventListener("click", () => { 
+      const container = document.querySelector("#dashbord-container"); 
+      const exitContainer = document.querySelector("#exit_container"); 
+      // const profileContainer = document.querySelector("#profile"); 
+ 
+      exitContainer.style.display = "block"; 
+      container.style.filter = "blur(4px)"; 
+ 
+      const button1 = document.querySelector("#back"); 
+      button1.addEventListener("click", () => { 
+        exitContainer.style.display = "none"; 
+        container.style.filter = "none"; 
+      }); 
+      const button2 = document.querySelector("#exit"); 
+      button2.addEventListener("click", () => { 
+        localStorage.removeItem("authToken"); 
+        window.location.href = "homepage.html"; 
+      }); 
     });
   //login
   const loginButtonInLoginPage = document.querySelector("#login_button");
@@ -118,6 +121,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json();
 
         if (response.ok) {
+          localStorage.setItem("authToken", data.data.token);  // Save token to localStorage
+          console.log(localStorage.getItem("authToken"));
+           
           window.location.href = "dashboard2.html";
         } else {
           errorContainer.textContent = "ایمیل یا رمز عبور اشتباه است";
@@ -143,7 +149,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const email = document.querySelector("#email_signup").value;
     const name = document.querySelector("#name_signup").value;
-    const password = document.querySelector("#password_signup").value;
+    const password = document.querySelector("#password_signup1").value;
+    const password1 = document.querySelector("#password_signup2").value;
     const errorContainer = document.querySelector("#signup-error");
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (!email || !name || !password) {
@@ -156,6 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       return;
     }
+    
     if (!emailPattern.test(email)) {
       errorContainer.textContent = "ایمیل نامعتبر است";
       errorContainer.style.background = "red";
@@ -164,6 +172,15 @@ document.addEventListener("DOMContentLoaded", () => {
         errorContainer.style.display = "none";
       }, 3000);
 
+      return;
+    }
+    if(password != password1){
+      errorContainer.textContent = "تکرار رمز عبور اشتباه است";
+      errorContainer.style.background = "red";
+      errorContainer.style.display = "block";
+      setTimeout(() => {
+        errorContainer.style.display = "none";
+      }, 3000);
       return;
     }
 
@@ -182,6 +199,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok) {
         window.location.href = "dashboard1.html"; //error
+        //localStorage.setItem("authToken", data.data.token); 
+        // console.log(localStorage.getItem("authToken"));
+
       } else {
         console.error("Signup error:", data);
         alert(data.message || "An error occurred during signup.");
@@ -191,6 +211,8 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Failed to connect to the server.");
     }
   });
+
+
   //select only one answer
   function selectOnlyOne(selectedCheckbox, questionId) {
     const checkboxes = document.querySelectorAll(
@@ -316,6 +338,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector("#forgot-btn")?.addEventListener("click", () => {
     const emailField = document.querySelector("#email");
     const errorContainer = document.querySelector("#forgotPassword-error");
+    localStorage.setItem("emailreseted", emailField.value);
+    
+    console.log(localStorage.getItem("emailreseted"));
+    
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
     if (!emailField || !emailField.value) {
@@ -364,16 +390,26 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("An error occurred. Please try again."); // User-friendly alert
       });
   });
-  document.querySelector("#reset-password-btn")?.addEventListener("click", () => {
-      const token = document.querySelector("#token-box").value;
-      const password = document.querySelector("#new-password").value;
+  document
+    .querySelector("#reset-password-btn")
+    ?.addEventListener("click", () => {
+      
+      const token = document.querySelector("#token-box")?.value;
+      const password = document.querySelector("#new-password")?.value;
+      const email = localStorage.getItem("emailreseted");
+      if(!email){
+        alert("error");
+        return;
+      }
+      console.log({ token, newPassword: password, email });
       
       fetch("http://localhost:5505/api/users/reset-password", {
         method: "post",
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify({ token, password }),
+
+        body: JSON.stringify({ token, newPassword: password, email }),
       })
         .then((response) => {
           if (!response.ok) console.log("Network response was not ok");
@@ -386,7 +422,7 @@ document.addEventListener("DOMContentLoaded", () => {
           console.error("There was a problem with the fetch operation:", error);
           alert("An error occurred. Please try again."); // User-friendly alert
         });
-        window.location.href = "dashboard2.html";
+      window.location.href = "login.html";
     });
   //save cheched checkbox
   const checkboxes = document.querySelectorAll(
@@ -399,6 +435,136 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem(checkbox.id, checkbox.checked);
     });
   });
+  function parseJwt(token) {
+    const base64Url = token?.split(".")[1]; // بخش Payload
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/"); // اصلاح Base64 (برای تطبیق با URL-safe encoding)
+
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
+
+    return JSON.parse(jsonPayload); // تبدیل به JSON
+  }
+
+  const token = localStorage.getItem("authToken"); // اینجا توکن رو وارد کنید
+  const decodedToken = parseJwt(token);
+  console.log(decodedToken);
+ 
+
+  const userEmail = decodedToken.email; // ایمیل را از توکن استخراج می‌کنیم
+  const userEmailElement = document.querySelector("#user-email");
+  if (userEmailElement) {
+    userEmailElement.textContent = userEmail;
+  } else {
+    console.error("userEmailElement not found.");
+  }
+ 
+  //change password 
+   
+document.getElementById('-btn').addEventListener('click', async (event) => { 
+  event.preventDefault(); // Prevent form submission 
+ 
+  // Get input values 
+  const oldPassword = document.getElementById('old-password').value; 
+  const newPassword = document.getElementById('new-password').value; 
+  const confirmNewPassword = document.getElementById('confirm-new-password').value; 
+ 
+  // Getting email from localStorage or the decoded token (assuming it's already decoded and saved) 
+  const email = decodedToken.email;  // You can replace this with your decoded JWT logic if needed 
+ const errorContainer = document.querySelector("#change-password-error");
+  // Validation 
+  if (!oldPassword || !newPassword || !confirmNewPassword) { 
+    errorContainer.textContent = " لطفاً تمام فیلدها را پر کنید.";
+      errorContainer.style.background = "red";
+      errorContainer.style.display = "block";
+
+      // Hide the error message after 3 seconds
+      setTimeout(() => {
+        errorContainer.style.display = "none";
+      }, 3000);
+    return; 
+  } 
+ 
+  if (newPassword !== confirmNewPassword) { 
+   
+    errorContainer.textContent = " رمز عبور جدید و تکرار آن مطابقت ندارند.";
+      errorContainer.style.background = "red";
+      errorContainer.style.display = "block";
+
+      // Hide the error message after 3 seconds
+      setTimeout(() => {
+        errorContainer.style.display = "none";
+      }, 3000);
+    return; 
+  } 
+ 
+  // Prepare data for the API request 
+  const data = { 
+    email, 
+    oldPassword, 
+    newPassword, 
+  }; 
+ 
+  try { 
+    // Send request to the backend 
+    const response = await fetch('http://localhost:5505/api/change-password', { 
+      method: 'POST', 
+      headers: { 
+        'Content-Type': 'application/json', 
+      }, 
+      body: JSON.stringify(data), 
+    }); 
+ 
+    // Check if response is OK 
+    if (!response.ok) { 
+      const errorMessage = await response.text(); 
+      alert(`Error: ${errorMessage}`); 
+      return; 
+    } 
+ 
+    // Handle response if success 
+    const result = await response.json(); 
+    if (result.message) { 
+      alert(result.message); 
+      // Optionally, clear the form or redirect the user 
+      document.getElementById('old-password').value = ''; 
+      document.getElementById('new-password').value = ''; 
+      document.getElementById('confirm-new-password').value = ''; 
+    } 
+  } catch (error) { 
+    console.error('Error:', error); 
+    alert('خطایی در ارتباط با سرور رخ داده است.'); 
+  } 
+});
+   
+//exit from account 
+  document 
+    .querySelector("#exit_from_account") 
+    ?.addEventListener("click", () => { 
+      const container = document.querySelector("#dashbord-container"); 
+      const exitContainer = document.querySelector("#exit_container"); 
+      // const profileContainer = document.querySelector("#profile"); 
+ 
+      exitContainer.style.display = "block"; 
+      container.style.filter = "blur(4px)"; 
+ 
+      const button1 = document.querySelector("#back"); 
+      button1.addEventListener("click", () => { 
+        exitContainer.style.display = "none"; 
+        container.style.filter = "none"; 
+      }); 
+      const button2 = document.querySelector("#exit"); 
+      button2.addEventListener("click", () => { 
+        localStorage.removeItem("authToken"); 
+        window.location.href = "homepage.html"; 
+      }); 
+    });
+
   //mentor page
 
   // Cache DOM elements
@@ -498,4 +664,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+
+  
 });
